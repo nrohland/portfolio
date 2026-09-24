@@ -34,16 +34,16 @@ function SectionLabel({
 
 export default function Page() {
   return (
-    <main id="content" className="mx-auto max-w-3xl px-6 pb-20">
+    <main id="content" className="mx-auto max-w-3xl px-6 pb-12">
       <div id="top" className="scroll-mt-8">
-        <section id="hero" className="fade-in-up scroll-mt-8 pb-4 pt-12 sm:pt-16">
+        <section id="hero" className="fade-in-up scroll-mt-8 pb-2 pt-8 sm:pt-10">
           <p className="text-sm text-muted-foreground">{profile.role}</p>
-          <h1 className="mt-3 text-4xl font-semibold tracking-tight text-accent sm:text-5xl sm:leading-none">
+          <h1 className="mt-2 text-4xl font-semibold tracking-tight text-accent sm:text-5xl sm:leading-none">
             {profile.name}
           </h1>
-          <span aria-hidden className="mt-4 block h-px w-12 bg-accent" />
-          <p className="mt-5 max-w-xl text-lg leading-relaxed">{profile.lead}</p>
-          <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-[17px]">
+          <span aria-hidden className="mt-3 block h-px w-12 bg-accent" />
+          <p className="mt-3 max-w-xl text-[17px] leading-snug">{profile.lead}</p>
+          <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-[17px]">
             <a className={textLink} href="#case-studies">
               Case studies
             </a>
@@ -55,13 +55,13 @@ export default function Page() {
 
         <section
           aria-labelledby="case-studies"
-          className="fade-in-up scroll-mt-8 pt-16"
+          className="fade-in-up scroll-mt-8 pt-10"
           style={{ animationDelay: "40ms" }}
         >
           <SectionLabel index="01" id="case-studies">
             Case studies
           </SectionLabel>
-          <div className="mt-6 grid gap-5 sm:grid-cols-2">
+          <div className="mt-4 grid gap-3 sm:grid-cols-2">
             {caseStudies.map((study) => (
               <article
                 key={study.title}
@@ -71,10 +71,10 @@ export default function Page() {
                   src={study.image}
                   alt={study.imageAlt}
                   width={720}
-                  height={450}
-                  className="aspect-[16/10] w-full object-cover"
+                  height={360}
+                  className="aspect-[2/1] w-full object-cover object-top"
                 />
-                <div className="flex flex-1 flex-col p-4">
+                <div className="flex flex-1 flex-col p-3">
                   <div className="flex items-start justify-between gap-3">
                     <h3 className="font-medium tracking-tight">{study.title}</h3>
                     {study.status ? (
@@ -84,16 +84,16 @@ export default function Page() {
                     ) : null}
                   </div>
                   <p className="mt-2 text-[17px] leading-snug">{study.summary}</p>
-                  <ul className="mt-3 flex flex-wrap gap-2">
+                  <ul className="mt-2 flex flex-wrap gap-1.5">
                     {study.stack.map((item) => (
                       <li key={item}>
-                        <span className="inline-block rounded-full border border-accent px-2 py-0.5 text-xs text-accent hover:bg-accent hover:text-on-accent">
+                        <span className="inline-block rounded-full border border-accent px-2 py-0.5 text-xs text-accent">
                           {item}
                         </span>
                       </li>
                     ))}
                   </ul>
-                  <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm">
+                  <div className="mt-2 flex flex-wrap gap-x-4 gap-y-2 text-sm">
                     {study.liveUrl ? (
                       <a
                         className={textLink}
@@ -117,7 +117,7 @@ export default function Page() {
                       </a>
                     ) : null}
                   </div>
-                  <p className="mt-3 text-sm leading-snug text-muted-foreground">{study.caption}</p>
+                  <p className="mt-2 text-sm leading-snug text-muted-foreground">{study.caption}</p>
                 </div>
               </article>
             ))}
@@ -126,20 +126,20 @@ export default function Page() {
 
         <section
           aria-labelledby="about"
-          className="fade-in-up scroll-mt-8 pt-16"
+          className="fade-in-up scroll-mt-8 pt-10"
           style={{ animationDelay: "80ms" }}
         >
           <SectionLabel index="02" id="about">
             About
           </SectionLabel>
-          <p className="mt-5 max-w-2xl text-[17px] leading-relaxed">
+          <p className="mt-3 max-w-2xl text-[17px] leading-relaxed">
             {about.join(" ")}
           </p>
         </section>
 
         <section
           aria-labelledby="experience"
-          className="fade-in-up scroll-mt-8 pt-16"
+          className="fade-in-up scroll-mt-8 pt-10"
           style={{ animationDelay: "120ms" }}
         >
           <div className="flex items-baseline justify-between gap-4">
@@ -158,13 +158,13 @@ export default function Page() {
               </a>
             ) : null}
           </div>
-          <ol className="mt-6 space-y-6">
+          <ol className="mt-4 space-y-4">
             {roles.map((role) => (
               <li
-                key={`${role.dates}-${role.title}`}
+                key={`${role.years}-${role.title}`}
                 className="grid grid-cols-[4.75rem_1fr] gap-x-4 sm:grid-cols-[5.5rem_1fr]"
               >
-                <p className="pt-1 text-sm tabular-nums text-muted-foreground">{role.years}</p>
+                <p className="pt-0.5 text-sm tabular-nums text-accent">{role.years}</p>
                 <div>
                   <h3 className="font-medium leading-snug tracking-tight">
                     {role.title}
@@ -172,8 +172,7 @@ export default function Page() {
                       <span className="font-normal text-muted-foreground"> · {role.org}</span>
                     ) : null}
                   </h3>
-                  <p className="text-sm text-muted-foreground">{role.dates}</p>
-                  {role.line ? <p className="mt-1 max-w-xl leading-snug">{role.line}</p> : null}
+                  {role.line ? <p className="mt-0.5 max-w-xl leading-snug">{role.line}</p> : null}
                 </div>
               </li>
             ))}
@@ -182,7 +181,7 @@ export default function Page() {
 
         <footer
           aria-labelledby="contact"
-          className="fade-in-up mt-16 scroll-mt-8 border-t border-border pt-8"
+          className="fade-in-up mt-10 scroll-mt-8 border-t border-border pt-6"
           style={{ animationDelay: "160ms" }}
         >
           <SectionLabel index="04" id="contact">

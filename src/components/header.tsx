@@ -6,7 +6,7 @@ const headerLink =
 
 export function Header() {
   return (
-    <header className="mx-auto flex max-w-3xl items-center justify-between gap-4 px-6 pt-8 sm:pt-10">
+    <header className="mx-auto flex max-w-3xl items-center justify-between gap-4 px-6 pt-5 sm:pt-6">
       <a href="#top" className="text-sm font-medium tracking-tight text-foreground">
         {profile.name}
       </a>
