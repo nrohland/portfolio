@@ -8,6 +8,8 @@
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-on-accent: var(--on-accent);
   --color-border: var(--border);
   --color-card: var(--card);
 }
@@ -18,7 +20,10 @@
   --foreground: #1c1917;
   --muted: #f5f5f4;
   --muted-foreground: #78716c;
-  --accent: #2181f6;
+  /* Darkened from #2181f6 so 17px text clears 4.5:1 on #fafaf9 (5.01:1). */
+  --accent: #0066e3;
+  --accent-hover: #004fbe;
+  --on-accent: #fafaf9;
   --border: #e7e5e4;
   --card: #ffffff;
 }
@@ -29,7 +34,10 @@
   --foreground: #fafaf9;
   --muted: #1c1917;
   --muted-foreground: #a8a29e;
+  /* #2181f6 clears 4.5:1 on #0c0a09 (5.21:1) and on #1c1917 (4.61:1). */
   --accent: #2181f6;
+  --accent-hover: #6aabff;
+  --on-accent: #0c0a09;
   --border: #292524;
   --card: #1c1917;
 }
@@ -38,7 +46,8 @@
   body {
     background: var(--background);
     color: var(--foreground);
-    font-size: 16px;
+    font-size: 17px;
+    line-height: 1.7;
     letter-spacing: -0.011em;
   }
 

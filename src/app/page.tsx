@@ -6,17 +6,27 @@ import {
   profile,
   roles,
 } from "@/data/site";
-import { Github, Linkedin, Mail } from "lucide-react";
+import Image from "next/image";
 
-const linkClass =
-  "underline decoration-foreground/25 underline-offset-4 hover:decoration-foreground";
+const textLink =
+  "text-accent underline decoration-accent/30 underline-offset-4 hover:text-accent-hover hover:decoration-accent-hover";
 
-function SectionLabel({ children, id }: { children: string; id: string }) {
+function SectionLabel({
+  index,
+  children,
+  id,
+}: {
+  index: string;
+  children: string;
+  id: string;
+}) {
   return (
     <h2
       id={id}
-      className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground"
+      className="flex items-center gap-3 font-mono text-[12px] font-medium uppercase tracking-[0.16em] text-accent"
     >
+      <span className="tabular-nums">{index}</span>
+      <span aria-hidden className="h-px w-8 bg-accent" />
       {children}
     </h2>
   );
@@ -24,22 +34,20 @@ function SectionLabel({ children, id }: { children: string; id: string }) {
 
 export default function Page() {
   return (
-    <main id="content" className="mx-auto max-w-3xl px-6 pb-24">
-      <div id="top" className="scroll-mt-20">
-        <section id="hero" className="fade-in-up scroll-mt-20 py-14" style={{ animationDelay: "0ms" }}>
-          <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
-            {profile.role}
-          </p>
-          <h1 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+    <main id="content" className="mx-auto max-w-3xl px-6 pb-20">
+      <div id="top" className="scroll-mt-8">
+        <section id="hero" className="fade-in-up scroll-mt-8 pb-4 pt-12 sm:pt-16">
+          <p className="text-sm text-muted-foreground">{profile.role}</p>
+          <h1 className="mt-3 text-4xl font-semibold tracking-tight text-accent sm:text-5xl sm:leading-none">
             {profile.name}
           </h1>
-          <p className="mt-4 max-w-2xl text-lg leading-snug tracking-tight">{profile.title}</p>
-          <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">{profile.summary}</p>
-          <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm">
-            <a className={linkClass} href="#case-studies">
+          <span aria-hidden className="mt-4 block h-px w-12 bg-accent" />
+          <p className="mt-5 max-w-xl text-lg leading-relaxed">{profile.lead}</p>
+          <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-[17px]">
+            <a className={textLink} href="#case-studies">
               Case studies
             </a>
-            <a className={linkClass} href={`mailto:${contact.email}`}>
+            <a className={textLink} href={`mailto:${contact.email}`}>
               Email me
             </a>
           </div>
@@ -47,51 +55,69 @@ export default function Page() {
 
         <section
           aria-labelledby="case-studies"
-          className="fade-in-up scroll-mt-20 border-t border-border py-14"
+          className="fade-in-up scroll-mt-8 pt-16"
           style={{ animationDelay: "40ms" }}
         >
-          <SectionLabel id="case-studies">Case studies</SectionLabel>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+          <SectionLabel index="01" id="case-studies">
+            Case studies
+          </SectionLabel>
+          <div className="mt-6 grid gap-5 sm:grid-cols-2">
             {caseStudies.map((study) => (
               <article
                 key={study.title}
-                className="flex h-full flex-col border border-border bg-card p-4"
+                className="flex h-full flex-col overflow-hidden rounded-md border border-border bg-card hover:border-accent"
               >
-                <div className="flex items-start justify-between gap-3">
-                  <h3 className="font-medium tracking-tight">{study.title}</h3>
-                  {study.status ? (
-                    <p className="shrink-0 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
-                      {study.status}
-                    </p>
-                  ) : null}
-                </div>
-                <p className="mt-3 text-sm leading-relaxed">{study.problem}</p>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{study.shows}</p>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{study.stack}</p>
-                <p className="mt-3 text-sm leading-relaxed">{study.note}</p>
-                <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm">
-                  {study.liveUrl ? (
-                    <a
-                      className={linkClass}
-                      href={study.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {study.liveLabel ?? "Live"}
-                      <span className="sr-only"> (opens in a new tab)</span>
-                    </a>
-                  ) : null}
-                  {study.repoUrl ? (
-                    <a
-                      className={linkClass}
-                      href={study.repoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Repository
-                      <span className="sr-only"> (opens in a new tab)</span>
-                    </a>
-                  ) : null}
+                <Image
+                  src={study.image}
+                  alt={study.imageAlt}
+                  width={720}
+                  height={450}
+                  className="aspect-[16/10] w-full object-cover"
+                />
+                <div className="flex flex-1 flex-col p-4">
+                  <div className="flex items-start justify-between gap-3">
+                    <h3 className="font-medium tracking-tight">{study.title}</h3>
+                    {study.status ? (
+                      <p className="shrink-0 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
+                        {study.status}
+                      </p>
+                    ) : null}
+                  </div>
+                  <p className="mt-2 text-[17px] leading-snug">{study.summary}</p>
+                  <ul className="mt-3 flex flex-wrap gap-2">
+                    {study.stack.map((item) => (
+                      <li key={item}>
+                        <span className="inline-block rounded-full border border-accent px-2 py-0.5 text-xs text-accent hover:bg-accent hover:text-on-accent">
+                          {item}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm">
+                    {study.liveUrl ? (
+                      <a
+                        className={textLink}
+                        href={study.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Live
+                        <span className="sr-only"> (opens in a new tab)</span>
+                      </a>
+                    ) : null}
+                    {study.repoUrl ? (
+                      <a
+                        className={textLink}
+                        href={study.repoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Code
+                        <span className="sr-only"> (opens in a new tab)</span>
+                      </a>
+                    ) : null}
+                  </div>
+                  <p className="mt-3 text-sm leading-snug text-muted-foreground">{study.caption}</p>
                 </div>
               </article>
             ))}
@@ -100,28 +126,30 @@ export default function Page() {
 
         <section
           aria-labelledby="about"
-          className="fade-in-up scroll-mt-20 border-t border-border py-14"
+          className="fade-in-up scroll-mt-8 pt-16"
           style={{ animationDelay: "80ms" }}
         >
-          <SectionLabel id="about">About</SectionLabel>
-          <div className="mt-6 space-y-4 leading-relaxed">
-            {about.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
-          </div>
+          <SectionLabel index="02" id="about">
+            About
+          </SectionLabel>
+          <p className="mt-5 max-w-2xl text-[17px] leading-relaxed">
+            {about.join(" ")}
+          </p>
         </section>
 
         <section
           aria-labelledby="experience"
-          className="fade-in-up scroll-mt-20 border-t border-border py-14"
+          className="fade-in-up scroll-mt-8 pt-16"
           style={{ animationDelay: "120ms" }}
         >
           <div className="flex items-baseline justify-between gap-4">
-            <SectionLabel id="experience">Experience</SectionLabel>
+            <SectionLabel index="03" id="experience">
+              Experience
+            </SectionLabel>
             {cvUrl ? (
               <a
                 href={cvUrl}
-                className={`${linkClass} text-sm`}
+                className={`${textLink} text-sm`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -130,72 +158,66 @@ export default function Page() {
               </a>
             ) : null}
           </div>
-          <ol className="mt-8 space-y-8">
+          <ol className="mt-6 space-y-6">
             {roles.map((role) => (
               <li
                 key={`${role.dates}-${role.title}`}
-                className="grid grid-cols-[5.5rem_1fr] gap-x-4"
+                className="grid grid-cols-[4.75rem_1fr] gap-x-4 sm:grid-cols-[5.5rem_1fr]"
               >
-                <p className="pt-0.5 text-sm tabular-nums text-muted-foreground">{role.years}</p>
+                <p className="pt-1 text-sm tabular-nums text-muted-foreground">{role.years}</p>
                 <div>
-                  <h3 className="font-medium leading-snug tracking-tight">{role.title}</h3>
-                  {role.org ? <p className="text-sm text-muted-foreground">{role.org}</p> : null}
+                  <h3 className="font-medium leading-snug tracking-tight">
+                    {role.title}
+                    {role.org ? (
+                      <span className="font-normal text-muted-foreground"> · {role.org}</span>
+                    ) : null}
+                  </h3>
                   <p className="text-sm text-muted-foreground">{role.dates}</p>
-                  {role.note ? (
-                    <p className="mt-1 text-sm text-muted-foreground">{role.note}</p>
-                  ) : null}
-                  {role.bullets ? (
-                    <ul className="mt-2 list-disc space-y-1 pl-4 text-sm leading-relaxed">
-                      {role.bullets.map((bullet) => (
-                        <li key={bullet}>{bullet}</li>
-                      ))}
-                    </ul>
-                  ) : null}
+                  {role.line ? <p className="mt-1 max-w-xl leading-snug">{role.line}</p> : null}
                 </div>
               </li>
             ))}
           </ol>
         </section>
 
-        <section
+        <footer
           aria-labelledby="contact"
-          className="fade-in-up scroll-mt-20 border-t border-border py-14"
+          className="fade-in-up mt-16 scroll-mt-8 border-t border-border pt-8"
           style={{ animationDelay: "160ms" }}
         >
-          <SectionLabel id="contact">Contact</SectionLabel>
-          <ul className="mt-6 space-y-3 text-sm">
+          <SectionLabel index="04" id="contact">
+            Contact
+          </SectionLabel>
+          <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-[17px]">
             <li>
-              <a className={`${linkClass} inline-flex items-center gap-2`} href={`mailto:${contact.email}`}>
-                <Mail aria-hidden className="size-4" />
+              <a className={textLink} href={`mailto:${contact.email}`}>
                 {contact.email}
               </a>
             </li>
             <li>
               <a
-                className={`${linkClass} inline-flex items-center gap-2`}
+                className={textLink}
                 href={contact.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn profile (opens in a new tab)"
               >
-                <Linkedin aria-hidden className="size-4" />
                 LinkedIn
               </a>
             </li>
             <li>
               <a
-                className={`${linkClass} inline-flex items-center gap-2`}
+                className={textLink}
                 href={contact.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub profile (opens in a new tab)"
               >
-                <Github aria-hidden className="size-4" />
                 GitHub
               </a>
             </li>
           </ul>
-        </section>
+        </footer>
       </div>
     </main>
   );

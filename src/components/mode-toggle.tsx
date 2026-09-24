@@ -24,7 +24,7 @@ export function ModeToggle() {
   return (
     <button
       type="button"
-      className="inline-flex size-10 items-center justify-center rounded-md text-foreground"
+      className="inline-flex size-10 items-center justify-center rounded-md text-accent hover:text-accent-hover"
       aria-label={dark ? "Switch to light theme" : "Switch to dark theme"}
       onClick={() => setTheme(dark ? "light" : "dark")}
     >
