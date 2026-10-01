@@ -24,7 +24,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
     <div className="case-body"><section><h2>The problem</h2><p>{project.problem}</p></section><section><h2>What I built</h2><p>{project.outcome}</p><p className="project-role"><span>My role</span> {project.role}</p></section>
       <section><h2>Architecture</h2><ol className="data-flow">{project.flow.map(step => <li key={step}>{step}</li>)}</ol></section>
       <section><h2>Technical decisions</h2><ul className="decisions">{project.decisions.map(d => <li key={d}>{d}</li>)}</ul></section>
-      <section><h2>Scope & limitations</h2><p>{project.limitations}</p><a className="text-link" href={project.sourceUrl}>Read the source documentation</a></section>
+      <section><h2>Scope & limitations</h2><p>{project.limitations}</p><a className="text-link" href={project.sourceUrl} target="_blank" rel="noopener noreferrer">Read the source documentation</a></section>
     </div><footer className="case-footer"><Link className="text-link" href="/#work">Back to selected work</Link><Link className="text-link" href="/#contact">Get in touch</Link></footer>
   </main>;
 }
