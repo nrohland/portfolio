@@ -7,10 +7,12 @@ import { SocialLink } from "@/components/social-link";
 export default function Page() {
   return <main id="content" className="wrap">
     <section className="hero" aria-labelledby="name">
-      <div><p className="role">{profile.role}</p><h1 id="name">Nicolás<br />Rohland<span className="name-dot">.</span></h1></div>
-      <div className="hero-note"><p>{profile.lead}</p><p className="hero-detail">Models, shared metrics and interfaces.<br />Built to make the next decision clearer.</p>
-        <div className="hero-links"><a className="primary-link" href="#work">View selected work <span aria-hidden="true">↓</span></a><SocialLink name="GitHub" href={contact.github} /><SocialLink name="LinkedIn" href={contact.linkedin} /></div>
+      <div className="hero-top"><h1 id="name">{profile.name}</h1>
+        <div className="hero-contact"><SocialLink name="GitHub" href={contact.github} /><SocialLink name="LinkedIn" href={contact.linkedin} /><a href={`mailto:${contact.email}`}>{contact.email}</a></div>
       </div>
+      <p className="hero-summary">Analytics Engineer / Data &amp; AI. I build data models, shared metrics and analytical products.</p>
+      <Stack items={technologyGroups.flatMap(group => group.items)} />
+      <nav className="hero-navigation" aria-label="Main navigation"><a className="primary-link" href="#work">Selected work <span aria-hidden="true">↓</span></a><a href="#about">About</a><a href="#contact">Contact</a></nav>
     </section>
     <section id="work" className="work" aria-labelledby="work-title">
       <div className="section-heading"><h2 id="work-title">Selected work</h2><p>Business questions, built into products.</p></div>

@@ -1,7 +1,7 @@
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://nicolasrohland.vercel.app").replace(/\/$/, "");
 export const profile = { name: "Nicolás Rohland", role: "Analytics Engineer / Data & AI", lead: "I turn business questions into data products people can use." };
 export const contact = { email: "nicolas.rohland@gmail.com", linkedin: "https://www.linkedin.com/in/nicolas-rohland", github: "https://github.com/nrohland" };
-export type Technology = "Python" | "dbt" | "DuckDB" | "BigQuery" | "Meltano" | "Next.js";
+export type Technology = "Python" | "dbt" | "DuckDB" | "BigQuery" | "Meltano" | "Next.js" | "Airflow" | "ClickHouse" | "Looker" | "Metabase";
 export type Project = {
   slug: string; title: string; category: string; thesis: string; problem: string;
   outcome: string; role: string; stack: Technology[]; image?: string; imageAlt?: string;
@@ -49,7 +49,7 @@ export const projects: Project[] = [
   },
 ];
 export const technologyGroups: { name: string; items: Technology[] }[] = [
-  { name: "Model & transform", items: ["Python", "dbt", "Meltano"] },
-  { name: "Store & query", items: ["DuckDB", "BigQuery"] },
-  { name: "Build & communicate", items: ["Next.js"] },
+  { name: "Model & transform", items: ["Python", "dbt", "Meltano", "Airflow"] },
+  { name: "Store & query", items: ["DuckDB", "BigQuery", "ClickHouse"] },
+  { name: "Build & communicate", items: ["Looker", "Metabase", "Next.js"] },
 ];

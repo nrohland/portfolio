@@ -1,4 +1,3 @@
-import { Header } from "@/components/header";
 import { contact, profile, SITE_URL } from "@/data/site";
 import type { Metadata } from "next";
 import "@fontsource/ibm-plex-sans/latin-400.css";
@@ -16,5 +15,5 @@ export const metadata: Metadata = {
 };
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const person = { "@context": "https://schema.org", "@type": "Person", name: profile.name, jobTitle: "Analytics Engineer", url: SITE_URL, sameAs: [contact.github, contact.linkedin] };
-  return <html lang="en"><body><a className="skip-link" href="#content">Skip to content</a><Header />{children}<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(person).replace(/</g, "\\u003c") }} /></body></html>;
+  return <html lang="en"><body><a className="skip-link" href="#content">Skip to content</a>{children}<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(person).replace(/</g, "\\u003c") }} /></body></html>;
 }

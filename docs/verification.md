@@ -67,3 +67,7 @@ Fresh checks: lint, typecheck and static build pass. This local build used `npm 
 ## Owner-supplied cover images
 
 Replaced all three homepage covers with the illustrations supplied by the owner, preserving the full 16:9 composition and existing real screenshots on case-study pages. WebP files total approximately 329 KiB. Lint, typecheck and production Webpack build passed. Desktop 1440px and mobile 390px reviewed; mobile image intrinsic-width overflow corrected and document width verified at 390px. Local route/image validation passed.
+
+## Reference-led hero update
+
+Removed the separate monogram header on the homepage. Name and contacts lead the page, followed by one short description, a labeled technology row, and minimal section navigation. Airflow, ClickHouse, Looker and Metabase were confirmed by the owner and added to the general stack; project stacks stay source-backed. All ten hero technologies have their matching logos. Lint, typecheck and static Webpack build passed. Visual review at 1440px and 390px; no horizontal overflow at 1440/390/320px.
