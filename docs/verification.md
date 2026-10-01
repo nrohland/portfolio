@@ -63,3 +63,7 @@ Remaining release work: choose/confirm the public canonical domain through `NEXT
 The final selection now has three projects. Ad Analytics is absent from the homepage, static routes and sitemap. SQL and React are absent from all technology lists; the frontend group contains only Next.js. Existing technical SQL explanations remain. Brand colors and footer GitHub/LinkedIn icons were checked in the rendered DOM. Barrilito's new cover is an explicitly illustrative extraction/strata SVG; its real chart remains on the case page.
 
 Fresh checks: lint, typecheck and static build pass. This local build used `npm run build -- --webpack` because Turbopack was denied a localhost IPC port by the execution sandbox. The existing CI continues to exercise the normal build. Updated desktop/mobile screenshots were captured. Homepage at 1440px and 390px has no overflow or unloaded content images, and no browser console errors were observed. The link/metadata parser now checks four content pages.
+
+## Owner-supplied cover images
+
+Replaced all three homepage covers with the illustrations supplied by the owner, preserving the full 16:9 composition and existing real screenshots on case-study pages. WebP files total approximately 329 KiB. Lint, typecheck and production Webpack build passed. Desktop 1440px and mobile 390px reviewed; mobile image intrinsic-width overflow corrected and document width verified at 390px. Local route/image validation passed.

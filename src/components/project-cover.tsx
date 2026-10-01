@@ -12,26 +12,12 @@ export function BasinChart() {
   </svg>;
 }
 export function ProjectCover({ project }: { project: Project }) {
-  return <div className={`project-cover cover-${project.slug}`}>
-    <div className="cover-heading"><span className="cover-name">{project.title}</span><span className="cover-subtitle">{project.slug === "northstar" ? "Profitability, in focus." : project.slug === "lendflow" ? "Follow the funding." : project.slug === "barrilito" ? "Vaca Muerta, in perspective." : "From events to insight."}</span></div>
-    {project.image ? <div className="cover-screen"><Image src={project.image} alt={project.imageAlt || project.title} width={1440} height={1000} sizes="(max-width: 700px) 90vw, 320px" /></div> : <EnergyIllustration />}
-    <span className="cover-caption">{project.slug === "barrilito" ? "Vaca Muerta · Open-data pipeline" : "Synthetic data · Live product capture"}</span>
+  const descriptions: Record<string, string> = {
+    northstar: "Editorial illustration of ecommerce analytics on a laptop in a warehouse, with packages and a delivery truck.",
+    lendflow: "Editorial illustration of a lending funnel dashboard and loan application stages in a fintech office.",
+    barrilito: "Editorial illustration of a drilling site in a desert landscape, representing Vaca Muerta.",
+  };
+  return <div className="project-cover">
+    <Image src={`/case-studies/${project.slug}-cover.webp`} alt={descriptions[project.slug]} width={1000} height={563} sizes="(max-width: 700px) 90vw, 310px" />
   </div>;
-}
-
-function EnergyIllustration() {
-  return <svg className="energy-illustration" viewBox="0 0 340 170" role="img" aria-label="Illustration of oil extraction above layered underground rock, representing Vaca Muerta.">
-    <path d="M0 90 35 84 70 87 101 78 135 82 168 72 199 80 234 75 277 87 308 78 340 83V170H0Z" fill="#d0aa83" />
-    <path d="M0 116Q85 101 169 115T340 111V170H0Z" fill="#bb855e" />
-    <path d="M0 142Q82 124 170 141T340 137V170H0Z" fill="#995b3e" />
-    <g fill="none" stroke="#5e3525" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M36 88h91M58 87l21-53 21 53M68 62h23M47 35l63-10M84 25v-9M102 30l11 22-8 6-12-25" />
-      <path d="M51 34v54M113 59v30M124 79h17v10M132 89v44q0 12 13 12h111" />
-      <path d="m174 145 7-8m22 8 7-8m22 8 7-8" stroke="#f2d7b8" strokeWidth="2" />
-    </g>
-    <circle cx="79" cy="33" r="4" fill="#5e3525" />
-    <path d="m221 72 24-19 19 8 22-16 29 28" fill="none" stroke="#b78863" strokeWidth="2" />
-    <g fill="#5e3525"><circle cx="265" cy="17" r="3" /><circle cx="286" cy="17" r="3" /><circle cx="307" cy="17" r="3" /></g>
-    <path d="M268 17h15m6 0h15" stroke="#5e3525" strokeWidth="1.5" />
-  </svg>;
 }
