@@ -32,3 +32,7 @@ No provider logos or claims of production LLM integrations: both conversational 
 Retained Next.js export, robots route, data configuration concept, favicon route and MIT attribution. Kept public contact information from the original branch. No PDF CV exists, so the UI links explicitly to professional background on LinkedIn.
 
 Canonical host defaults to the existing configured `nicolasrohland.vercel.app`. Set `NEXT_PUBLIC_SITE_URL` at build time if publishing elsewhere. No deployment or merge is performed by this change.
+
+## Review refinements, 2026-10-01
+
+Applied the owner's six browser comments: removed Ad Analytics from selection and generated routes; removed SQL and React from technology lists throughout the site; kept only Next.js in the frontend group; changed technology logos to brand colors; added GitHub and LinkedIn logos to social links; replaced Barrilito's cover chart with an original illustration of extraction and rock strata. The source-backed chart remains on the detailed case page. SQL references in technical descriptions remain accurate; no project source repositories or underlying React runtime dependencies were changed.

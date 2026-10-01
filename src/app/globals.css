@@ -114,7 +114,11 @@ h2 { font-size:23px; font-weight:500; letter-spacing:-.6px; }
   .case-body { margin-top:34px; } .case-visual .basin-chart { padding:15px; } .case-footer { flex-wrap:wrap; }
 }
 @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
-.brand-logo { filter:grayscale(1) brightness(.5); width:16px; height:16px; }
+.brand-logo { width:16px; height:16px; }
+.tech-stack .duckdb-logo { background:#fff000; padding:2px; border-radius:2px; }
+.energy-illustration { width:100%; height:133px; margin-top:12px; }
+.social-link { display:inline-flex; gap:7px; align-items:center; }
+.social-link svg { width:16px; height:16px; flex-shrink:0; }
 .wordmark, .hero-links a, .project-links a, .footer-bottom a { min-width:44px; }
 .project-info h3 a { display:inline-flex; align-items:center; min-height:44px; }
 .site-header nav a { min-width:44px; justify-content:center; }

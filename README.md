@@ -1,6 +1,6 @@
 # Nicolás Rohland, portfolio
 
-A personal, project-led portfolio for Analytics Engineering / Data & AI. Compact editorial covers lead to four source-backed case studies. Next.js App Router, TypeScript, React and Tailwind, with self-hosted IBM Plex Sans and server-rendered SVG technology icons.
+A personal, project-led portfolio for Analytics Engineering / Data & AI. Compact editorial covers lead to three source-backed case studies. Next.js App Router, TypeScript, React and Tailwind, with self-hosted IBM Plex Sans and server-rendered SVG technology icons.
 
 ## Development
 
@@ -40,7 +40,6 @@ No merge or production deployment is part of this redesign. Configure a new doma
 - Northstar: ecommerce profitability and deterministic conversational analytics.
 - LendFlow: governed lending-funnel analytics and curated SQL questions.
 - Barrilito: implemented open-data pipeline, public frontend still in development.
-- Ad Analytics: tested advertising marts and Tableau Public visualization.
 
 Synthetic-data and development limitations are explicit. No LLM providers are claimed by the deterministic demos. LinkedIn is labeled as professional background, not as a downloadable CV.
 

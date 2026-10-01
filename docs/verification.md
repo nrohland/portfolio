@@ -57,3 +57,9 @@ Fallback checks: all production pages are statically generated, no API/database 
 Design direction and the compact-cover refinement were applied. Real source repositories back the content, stacks and scope. Synthetic demos and unfinished Barrilito UI are disclosed. No invented metrics, testimonials, provider integrations or CV downloads. Cover identity, typographic hierarchy and spacing follow the individual project content. All navigation has a destination. No actionable high-severity UI-polish finding remains in inspected states.
 
 Remaining release work: choose/confirm the public canonical domain through `NEXT_PUBLIC_SITE_URL`, merge the PR and deploy, then run hosted Lighthouse. No merge or production deployment performed. Barrilito's frontend and a PDF CV are outside this portfolio implementation.
+
+## Browser-comment revision
+
+The final selection now has three projects. Ad Analytics is absent from the homepage, static routes and sitemap. SQL and React are absent from all technology lists; the frontend group contains only Next.js. Existing technical SQL explanations remain. Brand colors and footer GitHub/LinkedIn icons were checked in the rendered DOM. Barrilito's new cover is an explicitly illustrative extraction/strata SVG; its real chart remains on the case page.
+
+Fresh checks: lint, typecheck and static build pass. This local build used `npm run build -- --webpack` because Turbopack was denied a localhost IPC port by the execution sandbox. The existing CI continues to exercise the normal build. Updated desktop/mobile screenshots were captured. Homepage at 1440px and 390px has no overflow or unloaded content images, and no browser console errors were observed. The link/metadata parser now checks four content pages.

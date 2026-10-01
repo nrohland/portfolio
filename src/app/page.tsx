@@ -2,13 +2,14 @@ import { contact, profile, projects, technologyGroups } from "@/data/site";
 import { ProjectCover } from "@/components/project-cover";
 import { Stack } from "@/components/stack";
 import { ProjectLinks } from "@/components/project-links";
+import { SocialLink } from "@/components/social-link";
 
 export default function Page() {
   return <main id="content" className="wrap">
     <section className="hero" aria-labelledby="name">
       <div><p className="role">{profile.role}</p><h1 id="name">Nicolás<br />Rohland<span className="name-dot">.</span></h1></div>
       <div className="hero-note"><p>{profile.lead}</p><p className="hero-detail">Models, shared metrics and interfaces.<br />Built to make the next decision clearer.</p>
-        <div className="hero-links"><a className="primary-link" href="#work">View selected work <span aria-hidden="true">↓</span></a><a href={contact.github}>GitHub</a><a href={contact.linkedin}>LinkedIn</a></div>
+        <div className="hero-links"><a className="primary-link" href="#work">View selected work <span aria-hidden="true">↓</span></a><SocialLink name="GitHub" href={contact.github} /><SocialLink name="LinkedIn" href={contact.linkedin} /></div>
       </div>
     </section>
     <section id="work" className="work" aria-labelledby="work-title">
@@ -35,7 +36,7 @@ export default function Page() {
       </div>
     </section>
     <footer id="contact" className="contact-section" aria-labelledby="contact-title"><p>Have a data problem in mind?</p><h2 id="contact-title">Let’s talk.</h2>
-      <a className="email-link" href={`mailto:${contact.email}`}>{contact.email}</a><div className="footer-bottom"><span>© {new Date().getFullYear()} Nicolás Rohland</span><div><a href={contact.github}>GitHub</a><a href={contact.linkedin}>LinkedIn</a><a href="#content">Back to top ↑</a></div></div>
+      <a className="email-link" href={`mailto:${contact.email}`}>{contact.email}</a><div className="footer-bottom"><span>© {new Date().getFullYear()} Nicolás Rohland</span><div><SocialLink name="GitHub" href={contact.github} /><SocialLink name="LinkedIn" href={contact.linkedin} /><a href="#content">Back to top ↑</a></div></div>
     </footer>
   </main>;
 }
