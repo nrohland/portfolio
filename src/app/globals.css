@@ -117,3 +117,4 @@ h2 { font-size:23px; font-weight:500; letter-spacing:-.6px; }
 .brand-logo { filter:grayscale(1) brightness(.5); width:16px; height:16px; }
 .wordmark, .hero-links a, .project-links a, .footer-bottom a { min-width:44px; }
 .project-info h3 a { display:inline-flex; align-items:center; min-height:44px; }
+.site-header nav a { min-width:44px; justify-content:center; }

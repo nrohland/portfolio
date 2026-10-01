@@ -1,0 +1,59 @@
+# Verification, 2026-10-01
+
+Verified against the exported production files served by Python on localhost, not only the Next.js development server.
+
+## Build and code
+
+- `npm run build`: pass, static homepage plus four project routes, favicon, robots and sitemap.
+- `npm run lint`: pass.
+- `npm run typecheck`: pass. Script regenerates route types before TypeScript.
+- `npm audit`: zero vulnerabilities.
+- `git diff --check`: pass.
+- Existing tests: none in the original branch. Added CI for lint, typecheck and build; no artificial unit-test claims.
+
+## Browser checks
+
+| Element | Action and observed result |
+| --- | --- |
+| Hero project CTA | Click navigates to `/#work`. |
+| Work / About / Contact navigation | Click navigates to the matching real anchor. |
+| Back to top | Click navigates to `#content`. |
+| Each project cover | Click opens its source-backed case-study page. Four routes checked. |
+| Case study return links | Click returns to `/#work` for all four cases. |
+| Author wordmark | Click returns to `/`. |
+| Project title / Case study text links | Same validated routes as the cover. Exported href and destination checked. |
+| Project demos | Both Northstar and LendFlow opened and rendered in the browser; captures used in covers. |
+| Repository, source documentation, Tableau, LinkedIn links | All unique external hrefs probed: HTTP 200. No 404. |
+| Email | Correct `mailto:nicolas.rohland@gmail.com` verified in markup. OS email composer was not invoked. |
+| Keyboard | Tab reaches links; focused project CTA has a visible 2px olive outline. |
+
+No browser console warnings or errors observed on the portfolio. Content images loaded on all four project detail pages at 390px.
+
+## Responsive and accessibility
+
+- Desktop: 1440px, inspected full page and project case.
+- Mobile: 390px, inspected full homepage and all four project detail routes.
+- Additional homepage breakpoints: 320px and 768px.
+- `document.documentElement.scrollWidth === innerWidth` at tested widths. No horizontal overflow.
+- Final homepage: no links with a target smaller than 44×44px at 1440 and 390px.
+- All content images have descriptive alt text; decorative logos have adjacent names and are excluded from redundant screen-reader output.
+- Document language, section headings, navigation label and skip link present.
+- Body contrast 14.37:1; secondary text 5.25:1; olive accent 7.46:1 on paper. WCAG AA text contrast satisfied for these page tokens.
+- No entrance or scroll-triggered animations. `prefers-reduced-motion` disables smooth scrolling by CSS, verified in source. Emulated reduced-motion browser state was not available.
+- One light theme shipped and inspected. No unverified dark theme.
+
+## Links and metadata
+
+A parser inspected all five exported content pages: no broken internal routes, anchors or image paths; titles, descriptions, canonicals and OpenGraph images present. Robots and sitemap exist. Thirteen unique external links returned HTTP 200 on the audit date. External availability can change independently of this site.
+
+## Performance scope
+
+Lighthouse was installed and attempted against the static export. Chrome could not start its debugging endpoint in this macOS execution environment; a separate headless Chrome attempt aborted as well. No Lighthouse score or field Core Web Vitals are claimed.
+
+Fallback checks: all production pages are statically generated, no API/database needed at runtime, no third-party trackers, self-hosted Latin font subsets, WebP screenshots with lazy loading below the fold, local SVG technology icons. Homepage HTML is about 92KB uncompressed; linked Next assets (including fonts) are about 186KB with gzip; all three screenshot files total about 129KB. These are asset inventory measurements, not network-throttled performance results. Re-run Lighthouse on the deployed HTTPS preview before release.
+
+## Delivery gate
+
+Design direction and the compact-cover refinement were applied. Real source repositories back the content, stacks and scope. Synthetic demos and unfinished Barrilito UI are disclosed. No invented metrics, testimonials, provider integrations or CV downloads. Cover identity, typographic hierarchy and spacing follow the individual project content. All navigation has a destination. No actionable high-severity UI-polish finding remains in inspected states.
+
+Remaining release work: choose/confirm the public canonical domain through `NEXT_PUBLIC_SITE_URL`, merge the PR and deploy, then run hosted Lighthouse. No merge or production deployment performed. Barrilito's frontend and a PDF CV are outside this portfolio implementation.
