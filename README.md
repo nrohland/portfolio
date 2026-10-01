@@ -1,32 +1,53 @@
-# Portfolio
+# Nicolás Rohland, portfolio
 
-Personal site for Nicolás Rohland, ecommerce data analyst and analytics engineer.
+A personal, project-led portfolio for Analytics Engineering / Data & AI. Compact editorial covers lead to four source-backed case studies. Next.js App Router, TypeScript, React and Tailwind, with self-hosted IBM Plex Sans and server-rendered SVG technology icons.
 
-Static [Next.js](https://nextjs.org/) and Tailwind site. `npm run build` writes the export to `out/`.
+## Development
 
-## Attribution
+Requires Node.js 20.9 or newer (Node 22 recommended).
 
-Adapted from the [Magic UI portfolio](https://github.com/magicuidesign/portfolio) by Dillion Verma, under the [MIT License](https://github.com/magicuidesign/portfolio/blob/main/LICENSE). Copyright for that template is kept in `LICENSE`.
-
-Blog, hackathon, avatar, and Open Graph image routes from the template are not part of this site. The template's `headers()` config was removed so `output: "export"` can build.
-
-## Local
-
-```bash
-npm install
+```sh
+npm ci
 npm run dev
 ```
 
-Checks:
+Checks and static export:
 
-```bash
+```sh
 npm run lint
 npm run typecheck
 npm run build
 ```
 
-## Config
+`npm run build` writes `out/`, including the homepage, project pages, favicon, robots and sitemap. No backend, credentials, analytics or runtime database is needed. GitHub Actions runs these checks on pushes and pull requests. No test suite existed in the original project.
 
-`NEXT_PUBLIC_SITE_URL` sets the canonical URL, Open Graph URL, sitemap, and robots host. When it is missing, the site uses `https://nicolasrohland.vercel.app`. See `.env.example`.
+To inspect the exact production files locally:
 
-`cvUrl` in `src/data/site.ts` is the CV link. It points at LinkedIn. Set it to an empty string to hide the CV link. There is no CV file in this repo.
+```sh
+python3 -m http.server 3000 --directory out
+```
+
+## Publish
+
+Import this repository in Vercel with the Next.js preset, or serve `out/` from a static host. Project paths use trailing slashes and directory indexes. Set `NEXT_PUBLIC_SITE_URL` **before building** to the final public origin; the existing default is `https://nicolasrohland.vercel.app`.
+
+No merge or production deployment is part of this redesign. Configure a new domain and rebuild when the canonical host changes.
+
+## Content
+
+`src/data/site.ts` contains the profile, contact links, project evidence, stack and architecture decisions. `src/components/project-cover.tsx` contains the compact cover composition and Barrilito's source-backed SVG series.
+
+- Northstar: ecommerce profitability and deterministic conversational analytics.
+- LendFlow: governed lending-funnel analytics and curated SQL questions.
+- Barrilito: implemented open-data pipeline, public frontend still in development.
+- Ad Analytics: tested advertising marts and Tableau Public visualization.
+
+Synthetic-data and development limitations are explicit. No LLM providers are claimed by the deterministic demos. LinkedIn is labeled as professional background, not as a downloadable CV.
+
+[Audit and design](docs/audit-and-design.md), [asset sources](docs/assets.md), and [verification](docs/verification.md).
+
+## Attribution
+
+The technical base came from the previous MIT-licensed adaptation of the [Magic UI portfolio](https://github.com/magicuidesign/portfolio) by Dillion Verma. Original copyright is preserved in `LICENSE`. The visual design and page composition were replaced. Joachim Hodana's site was a visual reference only; no code, copy or assets were copied.
+
+Brand assets and font licenses are documented in `docs/assets.md`.
