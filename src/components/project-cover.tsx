@@ -1,5 +1,5 @@
 import type { Project } from "@/data/site";
-import { applicationStages, monthlyOil, productMargins } from "@/data/cover-charts";
+import { applicationStages, monthlyOil, retentionCohorts } from "@/data/cover-charts";
 
 export function BasinChart() {
   const points = monthlyOil.map((value, index) => `${28 + index * 26},${135 - (value - 1900000) / 1000000 * 95}`).join(" ");
@@ -11,27 +11,32 @@ export function BasinChart() {
   </svg>;
 }
 
-function MarginChart() {
-  const x = (value: number) => 8 + (value + 50) / 65 * 258;
-  const zero = x(0);
-  return <svg className="cover-chart" viewBox="0 0 274 190" role="img" aria-label="Contribution margins of the top three ecommerce products by revenue: minus 43%, plus 6% and plus 9%. From the project's synthetic dataset.">
-    <line x1={zero} y1="25" x2={zero} y2="157" className="chart-axis" />
-    {productMargins.map((value, index) => <g key={index}>
-      <text x="8" y={18 + index * 49}>{value > 0 ? "+" : ""}{Math.round(value)}%</text>
-      <rect x={Math.min(zero, x(value))} y={26 + index * 49} width={Math.abs(x(value) - zero)} height="18" fill="currentColor" opacity={value < 0 ? .5 : 1} />
+function RetentionChart() {
+  return <svg className="cover-chart" viewBox="0 0 274 190" role="img" aria-label="Customer retention by cohort. January through June 2024 cohorts, months zero through five. All start at 100%; roughly 14–16% return in month five. From the project's synthetic dataset.">
+    {Array.from({length:6}, (_, index) => <text key={index} x={62 + index * 38} y="14" textAnchor="middle" className="secondary">M{index}</text>)}
+    {retentionCohorts.map((cohort, row) => <g key={row}>
+      <text x="35" y={35 + row * 20} textAnchor="end" className="secondary">{["Jan", "Feb", "Mar", "Apr", "May", "Jun"][row]}</text>
+      {cohort.map((value, column) => <rect key={column} x={44 + column * 38} y={22 + row * 20} width="35" height="17" rx="2" fill="currentColor" opacity={value}><title>{`${Math.round(value * 100)}% retained`}</title></rect>)}
     </g>)}
-    <text x={zero} y="180" textAnchor="middle" className="secondary">0%</text>
+    <text x="44" y="180" className="secondary">0%</text>
+    {Array.from({length:10}, (_, index) => <rect key={index} x={77 + index * 13} y="169" width="12" height="12" rx="1" fill="currentColor" opacity={index / 9} />)}
+    <text x="266" y="180" textAnchor="end" className="secondary">100%</text>
   </svg>;
 }
 
 function FunnelChart() {
+  const baseline = 163;
+  const top = (count: number) => baseline - 126 * count / applicationStages[0];
   return <svg className="cover-chart" viewBox="0 0 274 190" role="img" aria-label="Application-to-funding funnel. Started 100%, submitted 46%, approved 22%, contracted 15%, funded 13%. Percentages use all started applications as the denominator, from the synthetic dataset.">
     {applicationStages.map((count, index) => {
-      const y = 13 + index * 36, width = 258 * count / applicationStages[0], left = (274 - width) / 2;
-      return <g key={index}><text x="266" y={y} textAnchor="end">{Math.round(count / applicationStages[0] * 100)}%</text>
-        <polygon points={`${left},${y + 5} ${left + width},${y + 5} ${left + width * .96},${y + 18} ${left + width * .04},${y + 18}`} fill="currentColor" />
+      const x = 8 + index * 54, y = top(count), next = applicationStages[index + 1];
+      return <g key={index}>
+        {next !== undefined && <path d={`M ${x + 20} ${y} C ${x + 37} ${y}, ${x + 37} ${top(next)}, ${x + 54} ${top(next)} L ${x + 54} ${baseline} L ${x + 20} ${baseline} Z`} fill="currentColor" opacity=".12" />}
+        <rect x={x} y={y} width="20" height={baseline - y} rx="2" fill="currentColor" />
+        <text x={x + 10} y={y - 10} textAnchor="middle">{Math.round(count / applicationStages[0] * 100)}%</text>
       </g>;
     })}
+    <line x1="8" y1={baseline} x2="264" y2={baseline} className="chart-axis" />
   </svg>;
 }
 
@@ -51,8 +56,8 @@ export function ProjectCover({ project }: { project: Project }) {
   const lines = energy ? ["Energy Sector", "Analytics"] : fintech ? ["Fintech Product", "Analytics"] : ["Ecommerce", "Analytics"];
   return <div className="project-cover">
     <span className="cover-title">{lines[0]}<br />{lines[1]}</span>
-    <p className="cover-subtitle">{energy ? "Monthly oil production · Vaca Muerta" : fintech ? "Application-to-funding funnel" : "Product contribution margin"}</p>
-    {energy ? <OilChart /> : fintech ? <FunnelChart /> : <MarginChart />}
-    <p className="cover-caption">{energy ? "Official production records" : "Synthetic data"}</p>
+    <p className="cover-subtitle">{energy ? "Monthly oil production · Vaca Muerta" : fintech ? "Application-to-funding funnel" : "Customer retention by cohort"}</p>
+    {energy ? <OilChart /> : fintech ? <FunnelChart /> : <RetentionChart />}
+    <div className="cover-footer"><p className="cover-caption">{energy ? "Official production records" : "Synthetic data"}</p><span className="cover-action">View case study <span aria-hidden="true">↗</span></span></div>
   </div>;
 }

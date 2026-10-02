@@ -81,3 +81,19 @@ Ecommerce and fintech values come from their synthetic datasets, with only round
 Fresh checks: full lint, typecheck, production Webpack build, and `git diff --check` pass. All four exported content pages have valid internal routes, anchors, image paths and metadata. Desktop 1440px and mobile 390px visually reviewed; no horizontal overflow at 1440/768/390/320px. All three covers have identical heights at each tested primary viewport. All non-anchor/non-email homepage links retain `_blank`; no browser warning/error logged. No existing test suite. Lighthouse limitation and hosted release checks above remain applicable.
 
 External links: all ten returned HTTP 200 on the final retry; the three initial GitHub 503 responses were transient.
+
+## Interactive card refinement
+
+Ecommerce now uses a customer-retention cohort heatmap, so its visual describes repeat customer behavior rather than a lending funnel. Fintech uses proportional vertical stage columns connected by smooth curves, following the requested Vercel funnel direction. The energy chart is unchanged. Source values and synthetic-data disclosures are retained.
+
+The cover is a link-shaped card with an 8px radius and one quiet border. Its always-visible “View case study” label makes the destination clear on touch devices; the external-link arrow signals a new tab. A 2% scale and soft elevation on precise-pointer hover reinforce clickability without changing layout. Keyboard focus remains visible, and reduced-motion disables scale and transitions. Repository links remain directly beside each project’s case/demo links.
+
+Design read: personal technical portfolio for hiring teams, in a restrained editorial style. ENERGY 1 / RHYTHM 2 / MOTION 1. The shared green palette and IBM Plex Sans preserve the approved identity; only the project’s analytical question changes the chart type. Equal chart slots keep titles and subtitles aligned.
+
+Fresh validation: lint, typecheck, production Webpack build and diff check pass after regenerating cloud-conflicted dependency/type caches. Fixed SVG tooltip titles to use one text child, resolving the observed hydration mismatch. The final production document loads without browser warnings/errors. Desktop 1440px, mobile 390px and minimum 320px have no overflow, including the new card footer. Keyboard focus on the cover link is visible; clicking the fintech cover opens the correct case in a separate tab. Local routes/assets and ten external links passed the renewed link check.
+
+Antislop delivery gate:
+- Hard gate PASS: charts use repository values with source/disclosure; unchanged navigation has valid hrefs; new cover action opens the case in a new tab; focus is visible and tested widths have no overflow. No fabricated metrics, testimonials, dead controls or runtime errors in final inspected state.
+- Purpose gate PASS: card radius/border identify a clickable preview; hover scale/elevation signal interaction, with reduced-motion support; arrow identifies new-tab navigation; green/IBM Plex Sans retain the owner-approved visual identity.
+- Liveliness PASS: ENERGY 1 / RHYTHM 2 / MOTION 1; shared cover structure is explicitly requested, while heatmap/funnel/line reflect three different analytical questions. The unchanged name-led hero and typography-led About preserve section rhythm.
+- Craftsmanship/quality PASS: titles and subtitle slots stay aligned; layout works at desktop/mobile; hover is restricted to precise pointers and never required for navigation; all chart values remain source-backed. A working build and browser click-through back the final state.

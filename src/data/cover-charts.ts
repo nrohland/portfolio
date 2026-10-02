@@ -1,6 +1,13 @@
-// Ecommerce: public/data/dashboard.json, top three products by gross revenue.
-// Values are contribution_margin × 100 from the project's synthetic dataset.
-export const productMargins = [-43.15781926142033, 6.059540846817558, 8.546128485138989];
+// Ecommerce: public/data/dashboard.json, Jan–Jun 2024 cohorts, months 0–5.
+// Each value is retained_customers / cohort_size in the synthetic dataset.
+export const retentionCohorts = [
+  [1, .2710727969348659, .34434865900383144, .210727969348659, .1810344827586207, .1527777777777778],
+  [1, .26263580538497877, .3240434577231932, .2021728861596599, .17005196032120926, .14312706660368446],
+  [1, .2687007874015748, .3198818897637795, .19438976377952755, .17273622047244094, .14960629921259844],
+  [1, .2763234438627109, .3391506689936009, .22164048865619546, .19604421175101802, .16055846422338568],
+  [1, .2797347699958558, .32905097389142146, .21301284707832574, .17778698715292168, .14711976792374637],
+  [1, .29934065934065934, .3323076923076923, .2079120879120879, .18021978021978022, .1476923076923077],
+];
 
 // Fintech: web/src/data/dashboard.json, product_metrics, overall/all counts.
 // Started → submitted → approved → contracted → funded; synthetic applications.
