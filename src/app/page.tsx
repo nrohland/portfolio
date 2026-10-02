@@ -28,7 +28,7 @@ export default function Page() {
     <section id="stack" className="stack-section" aria-labelledby="stack-title">
       <div className="section-heading"><h2 id="stack-title">Tools behind the work</h2><p>Selected for the problem at hand.</p></div>
       <div className="technology-groups">{technologyGroups.map(group => <div key={group.name}><h3>{group.name}</h3><Stack items={group.items} /></div>)}</div>
-      <p className="stack-note">Conversational analytics appears in Northstar and LendFlow as curated, deterministic demos with visible SQL.</p>
+      <p className="stack-note">Conversational analytics appears in the ecommerce and fintech projects as curated, deterministic demos with visible SQL.</p>
     </section>
     <section id="about" className="about-section" aria-labelledby="about-title">
       <h2 id="about-title">How I build</h2><div><p className="about-lead">Start with the question.<br />Make the data hold up.</p>

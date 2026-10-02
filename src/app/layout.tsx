@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: { default: "Nicolás Rohland | Analytics Engineer / Data & AI", template: "%s | Nicolás Rohland" },
   description, alternates: { canonical: "/" },
-  openGraph: { title: "Nicolás Rohland | Analytics Engineer", description, url: SITE_URL, siteName: profile.name, locale: "en_US", type: "website", images: [{ url: "/og.png", width: 1200, height: 630, alt: "Nicolás Rohland. Analytics Engineer / Data & AI. Selected work: Northstar, LendFlow and Barrilito." }] },
+  openGraph: { title: "Nicolás Rohland | Analytics Engineer", description, url: SITE_URL, siteName: profile.name, locale: "en_US", type: "website", images: [{ url: "/og.png", width: 1200, height: 630, alt: "Nicolás Rohland. Analytics Engineer / Data & AI. Selected work: ecommerce, fintech product and energy sector analytics." }] },
   twitter: { card: "summary_large_image", title: "Nicolás Rohland | Analytics Engineer", description, images: ["/og.png"] },
   robots: { index: true, follow: true },
 };

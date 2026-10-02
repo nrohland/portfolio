@@ -71,3 +71,13 @@ Replaced all three homepage covers with the illustrations supplied by the owner,
 ## Reference-led hero update
 
 Removed the separate monogram header on the homepage. Name and contacts lead the page, followed by one short description, a labeled technology row, and minimal section navigation. Airflow, ClickHouse, Looker and Metabase were confirmed by the owner and added to the general stack; project stacks stay source-backed. All ten hero technologies have their matching logos. Lint, typecheck and static Webpack build passed. Visual review at 1440px and 390px; no horizontal overflow at 1440/390/320px.
+
+## Approved chart covers, 2026-10-02
+
+Replaced the illustrated homepage covers with uniform SVG compositions: Ecommerce Analytics (product contribution margins), Fintech Product Analytics (application-to-funding funnel), and Energy Sector Analytics (monthly oil production · Vaca Muerta). Shared font, colors, dimensions and title/subtitle/chart positions; only chart type differs. Public project titles and OpenGraph are updated, while route slugs and real case-study screenshots stay stable.
+
+Ecommerce and fintech values come from their synthetic datasets, with only rounded percentages displayed. Energy uses the official committed Jan–Dec 2025 extract; its accessible description and case-study limitations disclose that 2026 is unavailable. No conversion-rate metric was invented.
+
+Fresh checks: full lint, typecheck, production Webpack build, and `git diff --check` pass. All four exported content pages have valid internal routes, anchors, image paths and metadata. Desktop 1440px and mobile 390px visually reviewed; no horizontal overflow at 1440/768/390/320px. All three covers have identical heights at each tested primary viewport. All non-anchor/non-email homepage links retain `_blank`; no browser warning/error logged. No existing test suite. Lighthouse limitation and hosted release checks above remain applicable.
+
+External links: all ten returned HTTP 200 on the final retry; the three initial GitHub 503 responses were transient.

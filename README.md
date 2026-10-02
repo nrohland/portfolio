@@ -35,11 +35,11 @@ No merge or production deployment is part of this redesign. Configure a new doma
 
 ## Content
 
-`src/data/site.ts` contains the profile, contact links, project evidence, stack and architecture decisions. `src/components/project-cover.tsx` contains the compact cover composition and Barrilito's source-backed SVG series.
+`src/data/site.ts` contains the profile, contact links, project evidence, stack and architecture decisions. `src/components/project-cover.tsx` contains the shared cover composition. `src/data/cover-charts.ts` holds source-backed values for the SVG charts.
 
-- Northstar: ecommerce profitability and deterministic conversational analytics.
-- LendFlow: governed lending-funnel analytics and curated SQL questions.
-- Barrilito: implemented open-data pipeline, public frontend still in development.
+- Ecommerce Analytics: ecommerce profitability and deterministic conversational analytics.
+- Fintech Product Analytics: governed lending-funnel analytics and curated SQL questions.
+- Energy Sector Analytics: implemented open-data pipeline, public frontend still in development.
 
 Synthetic-data and development limitations are explicit. No LLM providers are claimed by the deterministic demos. LinkedIn is labeled as professional background, not as a downloadable CV.
 

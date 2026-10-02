@@ -10,7 +10,7 @@ export type Project = {
 };
 export const projects: Project[] = [
   {
-    slug: "northstar", title: "Northstar", category: "Ecommerce profitability", thesis: "Sales are only half the story.",
+    slug: "northstar", title: "Ecommerce Analytics", category: "Ecommerce profitability", thesis: "Sales are only half the story.",
     problem: "Revenue growth can hide weak margins, expensive acquisition and low-value customers.",
     outcome: "A shared metric layer connects product margins, customer cohorts and advertising efficiency in one dashboard.",
     role: "Data modeling & product implementation", stack: ["Python", "DuckDB", "Next.js"],
@@ -23,7 +23,7 @@ export const projects: Project[] = [
     sourceUrl: "https://github.com/nrohland/ecommerce-profitability-analytics/blob/9f89a1bb380cc174330967092dee306cf6b92f96/README.md",
   },
   {
-    slug: "lendflow", title: "LendFlow", category: "Product & funnel analytics", thesis: "An approval is not a funded loan.",
+    slug: "lendflow", title: "Fintech Product Analytics", category: "Product & funnel analytics", thesis: "An approval is not a funded loan.",
     problem: "An approval rate alone does not explain where applicants leave the lending journey.",
     outcome: "A governed funnel separates application, approval and funding, with device-level friction and a curated SQL question interface.",
     role: "Analytical modeling & dashboard implementation", stack: ["Python", "dbt", "DuckDB", "Next.js"],
@@ -36,7 +36,7 @@ export const projects: Project[] = [
     sourceUrl: "https://github.com/nrohland/lendflow-fintech-analytics/blob/ffc1decc2c81b9278c874c43bd50e19f411bfc79/README.md",
   },
   {
-    slug: "barrilito", title: "Barrilito", category: "Open-data engineering · In development", thesis: "A clearer view of Vaca Muerta.",
+    slug: "barrilito", title: "Energy Sector Analytics", category: "Open-data engineering · In development", thesis: "A clearer view of Vaca Muerta.",
     problem: "Large public files, mixed units and unclear grains make basin-level production difficult to interpret.",
     outcome: "Monthly ingestion and tested dbt marts turn official production records into comparable company, area and basin metrics.",
     role: "Pipeline & analytical modeling", stack: ["Python", "Meltano", "BigQuery", "dbt"],
