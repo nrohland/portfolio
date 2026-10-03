@@ -3,6 +3,7 @@ import { ProjectCover } from "@/components/project-cover";
 import { Stack } from "@/components/stack";
 import { ProjectLinks } from "@/components/project-links";
 import { SocialLink } from "@/components/social-link";
+import { BuildProcess } from "@/components/build-process";
 
 export default function Page() {
   return <main id="content" className="wrap">
@@ -20,8 +21,12 @@ export default function Page() {
         <a href={`/projects/${project.slug}/`} className="cover-link" aria-label={`Read the ${project.title} case study`} target="_blank" rel="noopener noreferrer"><ProjectCover project={project} /></a>
         <div className="project-info"><p className="project-category"><span className="project-number">0{index + 1}</span>{project.category}</p>
           <h3 id={`${project.slug}-title`}><a href={`/projects/${project.slug}/`} target="_blank" rel="noopener noreferrer">{project.title}</a><span>{project.thesis}</span></h3>
-          <p className="project-problem">{project.problem}</p><p className="project-outcome">{project.outcome}</p>
-          <p className="project-role"><span>My role</span> {project.role}</p><Stack items={project.stack} /><ProjectLinks project={project} />
+          <dl className="project-summary">
+            <div><dt>The Friction</dt><dd>{project.problem}</dd></div>
+            <div><dt>The Solution</dt><dd>{project.solution}</dd></div>
+            <div><dt>The Output</dt><dd>{project.outcome}</dd></div>
+          </dl>
+          <Stack items={project.stack} /><ProjectLinks project={project} />
         </div>
       </article>)}</div>
     </section>
@@ -31,11 +36,9 @@ export default function Page() {
       <p className="stack-note">Conversational analytics appears in the ecommerce and fintech projects as curated, deterministic demos with visible SQL.</p>
     </section>
     <section id="about" className="about-section" aria-labelledby="about-title">
-      <h2 id="about-title">How I build</h2><div><p className="about-lead">Start with the question.<br />Make the data hold up.</p>
-        <p>I work at the intersection of analytics engineering and product thinking. I care about the grain of a table, the definition of a metric and the screen where someone uses it.</p>
-        <p>My projects make those choices inspectable: documented models, tested transformations and interfaces that show where the numbers come from.</p>
-        <a className="text-link" href={contact.linkedin} target="_blank" rel="noopener noreferrer">Professional background on LinkedIn</a>
-      </div>
+      <h2 id="about-title">How I build</h2>
+      <BuildProcess />
+      <a className="text-link process-profile" href={contact.linkedin} target="_blank" rel="noopener noreferrer">Professional background on LinkedIn</a>
     </section>
     <footer id="contact" className="contact-section" aria-labelledby="contact-title"><p>Have a data problem in mind?</p><h2 id="contact-title">Let’s talk.</h2>
       <a className="email-link" href={`mailto:${contact.email}`}>{contact.email}</a><div className="footer-bottom"><span>© {new Date().getFullYear()} Nicolás Rohland</span><div><SocialLink name="GitHub" href={contact.github} /><SocialLink name="LinkedIn" href={contact.linkedin} /><a href="#content">Back to top ↑</a></div></div>

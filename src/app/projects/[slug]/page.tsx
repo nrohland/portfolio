@@ -22,7 +22,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       {project.image ? <Image src={project.image} alt={project.imageAlt || project.title} width={1440} height={1000} sizes="(max-width: 1000px) 100vw, 1000px" priority /> : <BasinChart />}
       <figcaption>{project.disclosure}</figcaption>
     </figure>
-    <div className="case-body"><section><h2>The problem</h2><p>{project.problem}</p></section><section><h2>What I built</h2><p>{project.outcome}</p><p className="project-role"><span>My role</span> {project.role}</p></section>
+    <div className="case-body"><section><h2>The Friction</h2><p>{project.problem}</p></section><section><h2>The Solution</h2><p>{project.solution}</p></section><section><h2>The Output</h2><p>{project.outcome}</p></section>
       <section><h2>Architecture</h2><ol className="data-flow">{project.flow.map(step => <li key={step}>{step}</li>)}</ol></section>
       <section><h2>Technical decisions</h2><ul className="decisions">{project.decisions.map(d => <li key={d}>{d}</li>)}</ul></section>
       <section><h2>Scope & limitations</h2><p>{project.limitations}</p><a className="text-link" href={project.sourceUrl} target="_blank" rel="noopener noreferrer">Read the source documentation</a></section>

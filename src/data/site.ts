@@ -4,16 +4,17 @@ export const contact = { email: "nicolas.rohland@gmail.com", linkedin: "https://
 export type Technology = "Python" | "dbt" | "DuckDB" | "BigQuery" | "Meltano" | "Next.js" | "Airflow" | "ClickHouse" | "Looker" | "Metabase";
 export type Project = {
   slug: string; title: string; category: string; thesis: string; problem: string;
-  outcome: string; role: string; stack: Technology[]; image?: string; imageAlt?: string;
+  solution: string; outcome: string; stack: Technology[]; image?: string; imageAlt?: string;
   disclosure: string; flow: string[]; decisions: string[]; limitations: string;
   repoUrl: string; liveUrl?: string; sourceUrl: string;
 };
 export const projects: Project[] = [
   {
-    slug: "northstar", title: "Ecommerce Analytics", category: "Ecommerce profitability", thesis: "Sales are only half the story.",
-    problem: "Revenue growth can hide weak margins, expensive acquisition and low-value customers.",
-    outcome: "A shared metric layer connects product margins, customer cohorts and advertising efficiency in one dashboard.",
-    role: "Data modeling & product implementation", stack: ["Python", "DuckDB", "Next.js"],
+    slug: "northstar", title: "Ecommerce Profitability & Unit Economics", category: "Ecommerce Analytics · Completed", thesis: "Revenue vs. Real Profit in an Ecommerce Business",
+    problem: "Revenue growth can hide weak margins, expensive acquisition, and differences in customer value.",
+    solution: "A shared metric layer connecting product margins, advertising spend, and customer cohorts.",
+    outcome: "A profitability dashboard that brings contribution profit, retention, and acquisition costs into one view.",
+    stack: ["Python", "DuckDB", "Next.js"],
     image: "/case-studies/northstar.webp", imageAlt: "Northstar live dashboard showing contribution profit and ecommerce revenue",
     disclosure: "Synthetic data · Deterministic analyst demo",
     flow: ["Python generator", "Parquet facts & dimensions", "DuckDB semantic views", "JSON snapshot", "Dashboard & analyst"],
@@ -23,10 +24,11 @@ export const projects: Project[] = [
     sourceUrl: "https://github.com/nrohland/ecommerce-profitability-analytics/blob/9f89a1bb380cc174330967092dee306cf6b92f96/README.md",
   },
   {
-    slug: "lendflow", title: "Fintech Product Analytics", category: "Product & funnel analytics", thesis: "An approval is not a funded loan.",
-    problem: "An approval rate alone does not explain where applicants leave the lending journey.",
-    outcome: "A governed funnel separates application, approval and funding, with device-level friction and a curated SQL question interface.",
-    role: "Analytical modeling & dashboard implementation", stack: ["Python", "dbt", "DuckDB", "Next.js"],
+    slug: "lendflow", title: "Fintech Product Analytics", category: "Product & Funnel Analytics · Completed", thesis: "Where Conversion Breaks Down in a Fintech Lending Funnel",
+    problem: "Approval rates hide the drop-offs between starting an application and receiving funding.",
+    solution: "A tested funnel model with explicit stage definitions and device-level breakdowns.",
+    outcome: "Consistent conversion metrics and an analytical interface for exploring where applicants leave the journey.",
+    stack: ["Python", "dbt", "DuckDB", "Next.js"],
     image: "/case-studies/lendflow.webp", imageAlt: "LendFlow live dashboard with application, approval and funding metrics",
     disclosure: "Synthetic data · Unofficial lending case study",
     flow: ["Python generator", "Parquet", "dbt on DuckDB", "Mart export", "Next.js & Ask LendFlow"],
@@ -36,10 +38,11 @@ export const projects: Project[] = [
     sourceUrl: "https://github.com/nrohland/lendflow-fintech-analytics/blob/ffc1decc2c81b9278c874c43bd50e19f411bfc79/README.md",
   },
   {
-    slug: "barrilito", title: "Energy Sector Analytics", category: "Open-data engineering · In development", thesis: "A clearer view of Vaca Muerta.",
-    problem: "Large public files, mixed units and unclear grains make basin-level production difficult to interpret.",
-    outcome: "Monthly ingestion and tested dbt marts turn official production records into comparable company, area and basin metrics.",
-    role: "Pipeline & analytical modeling", stack: ["Python", "Meltano", "BigQuery", "dbt"],
+    slug: "barrilito", title: "Energy Sector Analytics", category: "Data Engineering · In Development", thesis: "Turning Vaca Muerta’s Public Production Records into Comparable Metrics",
+    problem: "Large public files, mixed units, and inconsistent granularity make production comparisons difficult.",
+    solution: "Monthly ingestion into BigQuery and a modular dbt transformation layer with automated data tests.",
+    outcome: "Curated marts for comparing production across companies, areas, and basins.",
+    stack: ["Python", "Meltano", "BigQuery", "dbt"],
     disclosure: "Official monthly data · Pipeline built, public UI pending",
     flow: ["Capítulo IV / CKAN", "Meltano", "BigQuery raw", "dbt staging & marts", "Notebook snapshots"],
     decisions: ["Use monthly ingestion to match the source cadence, with partitioned and clustered BigQuery tables.", "Separate basin production per calendar day from well productivity per effective operating day.", "Keep unit conversions and grains explicit. A planned interpolated counter is a simulation of monthly data, not live telemetry."],
