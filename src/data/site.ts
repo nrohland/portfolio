@@ -1,4 +1,4 @@
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://nicolasrohland.vercel.app").replace(/\/$/, "");
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://nicolas-rohland.vercel.app").replace(/\/$/, "");
 export const profile = { name: "Nicolás Rohland", role: "Analytics Engineer / Data & AI", lead: "I turn business questions into data products people can use." };
 export const contact = { email: "nicolas.rohland@gmail.com", linkedin: "https://www.linkedin.com/in/nicolas-rohland", github: "https://github.com/nrohland" };
 export type Technology = "Python" | "dbt" | "DuckDB" | "BigQuery" | "Meltano" | "Next.js" | "Airflow" | "ClickHouse" | "Looker" | "Metabase";

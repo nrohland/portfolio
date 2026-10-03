@@ -29,7 +29,7 @@ python3 -m http.server 3000 --directory out
 
 ## Publish
 
-Import this repository in Vercel with the Next.js preset, or serve `out/` from a static host. Project paths use trailing slashes and directory indexes. Set `NEXT_PUBLIC_SITE_URL` **before building** to the final public origin; the existing default is `https://nicolasrohland.vercel.app`.
+Import this repository in Vercel with the Next.js preset, or serve `out/` from a static host. Project paths use trailing slashes and directory indexes. Set `NEXT_PUBLIC_SITE_URL` **before building** to the final public origin; the existing default is `https://nicolas-rohland.vercel.app`.
 
 No merge or production deployment is part of this redesign. Configure a new domain and rebuild when the canonical host changes.
 
