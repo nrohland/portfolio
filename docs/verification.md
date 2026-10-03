@@ -106,3 +106,10 @@ The owner selected revenue composition for Ecommerce. Horizontal bars show produ
 Fresh lint, typecheck, production Webpack build and diff check pass. Final desktop 1440px and mobile 390px screenshots reviewed; mobile document width equals viewport width and no browser warnings/errors were logged. Source-backed accessible chart description and existing new-tab case-study action remain present.
 
 Antislop delivery gate: hard gate PASS (source-backed shares and synthetic disclosure); purpose PASS (horizontal category comparison differs from fintech stage columns); liveliness PASS (approved common typography/palette with distinct chart forms); craftsmanship PASS (aligned slots, responsive SVG and readable labels). Earlier hosted Lighthouse/canonical-domain release limitations remain.
+
+
+## Production publication and logo correction, 2026-10-03
+
+PR #2 was merged at a2cbb89 and deployed from main to https://nicolas-rohland.vercel.app on Vercel Hobby, connected to the existing GitHub repository. NEXT_PUBLIC_SITE_URL is set to that origin for production and preview. The public homepage renders all three final charts and its canonical URL points to the new domain; all non-anchor/non-email links retain new-tab targets. Desktop 1440px and mobile 390px have no overflow or browser warnings/errors.
+
+The shared stack now uses official multicolor SVG assets for Airflow and Python, plus official Google Cloud color SVGs for BigQuery and Looker. Existing Simple Icons brand colors for dbt, DuckDB, ClickHouse, Metabase, Next.js, GitHub and LinkedIn remain. Meltano already uses the official asset. Labels, dimensions and original artwork are preserved. Fresh lint, typecheck, static Webpack build and diff check pass; all official logo images loaded at 20px in the desktop hero and desktop/mobile visual review passed. Favicon and project covers are unchanged.

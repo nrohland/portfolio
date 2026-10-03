@@ -1,9 +1,12 @@
-import { siPython, siDbt, siDuckdb, siGooglebigquery, siNextdotjs, siApacheairflow, siClickhouse, siLooker, siMetabase } from "simple-icons";
+import { siDbt, siDuckdb, siNextdotjs, siClickhouse, siMetabase } from "simple-icons";
 import Image from "next/image";
 import type { Technology } from "@/data/site";
-const icons = { Python: siPython, dbt: siDbt, DuckDB: siDuckdb, BigQuery: siGooglebigquery, "Next.js": siNextdotjs, Airflow: siApacheairflow, ClickHouse: siClickhouse, Looker: siLooker, Metabase: siMetabase };
+
+const icons = { dbt: siDbt, DuckDB: siDuckdb, "Next.js": siNextdotjs, ClickHouse: siClickhouse, Metabase: siMetabase };
+const officialLogos = { Python: "/logos/python.svg", Airflow: "/logos/airflow.svg", BigQuery: "/logos/bigquery.svg", Looker: "/logos/looker.svg", Meltano: "/logos/meltano.svg" };
+
 export function Stack({ items }: { items: Technology[] }) {
   return <ul className="tech-stack" aria-label="Technologies">{items.map(name => <li key={name} title={name}>
-    {name in icons ? <svg viewBox="0 0 24 24" aria-hidden="true" className={(name === "DuckDB" || name === "ClickHouse") ? "duckdb-logo" : undefined} style={{ backgroundColor: name === "ClickHouse" ? "#ffcc01" : undefined, fill: (name === "DuckDB" || name === "ClickHouse") ? "#1a1a1a" : `#${icons[name as keyof typeof icons].hex}` }}><path d={icons[name as keyof typeof icons].path} /></svg> : <Image src="/logos/meltano.svg" width={16} height={16} alt="" className="brand-logo" />}
+    {name in officialLogos ? <Image src={officialLogos[name as keyof typeof officialLogos]} width={16} height={16} alt="" className="brand-logo" /> : <svg viewBox="0 0 24 24" aria-hidden="true" className={(name === "DuckDB" || name === "ClickHouse") ? "duckdb-logo" : undefined} style={{ backgroundColor: name === "ClickHouse" ? "#ffcc01" : undefined, fill: (name === "DuckDB" || name === "ClickHouse") ? "#1a1a1a" : `#${icons[name as keyof typeof icons].hex}` }}><path d={icons[name as keyof typeof icons].path} /></svg>}
     <span>{name}</span></li>)}</ul>;
 }
