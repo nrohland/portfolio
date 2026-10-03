@@ -97,3 +97,12 @@ Antislop delivery gate:
 - Purpose gate PASS: card radius/border identify a clickable preview; hover scale/elevation signal interaction, with reduced-motion support; arrow identifies new-tab navigation; green/IBM Plex Sans retain the owner-approved visual identity.
 - Liveliness PASS: ENERGY 1 / RHYTHM 2 / MOTION 1; shared cover structure is explicitly requested, while heatmap/funnel/line reflect three different analytical questions. The unchanged name-led hero and typography-led About preserve section rhythm.
 - Craftsmanship/quality PASS: titles and subtitle slots stay aligned; layout works at desktop/mobile; hover is restricted to precise pointers and never required for navigation; all chart values remain source-backed. A working build and browser click-through back the final state.
+
+
+## Revenue composition selection, 2026-10-02
+
+The owner selected revenue composition for Ecommerce. Horizontal bars show product gross revenue grouped by category from the synthetic dashboard export. Nutrition, Hydration and Wellness retain their categories; Other combines Vitamins, Energy and Accessories. Bar widths use exact shares of the product-export total; largest-remainder rounding gives labels 62%, 13%, 8% and 17%, summing to 100%. Fintech and Energy are unchanged.
+
+Fresh lint, typecheck, production Webpack build and diff check pass. Final desktop 1440px and mobile 390px screenshots reviewed; mobile document width equals viewport width and no browser warnings/errors were logged. Source-backed accessible chart description and existing new-tab case-study action remain present.
+
+Antislop delivery gate: hard gate PASS (source-backed shares and synthetic disclosure); purpose PASS (horizontal category comparison differs from fintech stage columns); liveliness PASS (approved common typography/palette with distinct chart forms); craftsmanship PASS (aligned slots, responsive SVG and readable labels). Earlier hosted Lighthouse/canonical-domain release limitations remain.

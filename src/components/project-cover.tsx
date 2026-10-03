@@ -1,5 +1,5 @@
 import type { Project } from "@/data/site";
-import { applicationStages, monthlyOil, retentionCohorts } from "@/data/cover-charts";
+import { applicationStages, monthlyOil, categoryRevenue } from "@/data/cover-charts";
 
 export function BasinChart() {
   const points = monthlyOil.map((value, index) => `${28 + index * 26},${135 - (value - 1900000) / 1000000 * 95}`).join(" ");
@@ -11,16 +11,25 @@ export function BasinChart() {
   </svg>;
 }
 
-function RetentionChart() {
-  return <svg className="cover-chart" viewBox="0 0 274 190" role="img" aria-label="Customer retention by cohort. January through June 2024 cohorts, months zero through five. All start at 100%; roughly 14–16% return in month five. From the project's synthetic dataset.">
-    {Array.from({length:6}, (_, index) => <text key={index} x={62 + index * 38} y="14" textAnchor="middle" className="secondary">M{index}</text>)}
-    {retentionCohorts.map((cohort, row) => <g key={row}>
-      <text x="35" y={35 + row * 20} textAnchor="end" className="secondary">{["Jan", "Feb", "Mar", "Apr", "May", "Jun"][row]}</text>
-      {cohort.map((value, column) => <rect key={column} x={44 + column * 38} y={22 + row * 20} width="35" height="17" rx="2" fill="currentColor" opacity={value}><title>{`${Math.round(value * 100)}% retained`}</title></rect>)}
-    </g>)}
-    <text x="44" y="180" className="secondary">0%</text>
-    {Array.from({length:10}, (_, index) => <rect key={index} x={77 + index * 13} y="169" width="12" height="12" rx="1" fill="currentColor" opacity={index / 9} />)}
-    <text x="266" y="180" textAnchor="end" className="secondary">100%</text>
+function RevenueMixChart() {
+  const total = categoryRevenue.reduce((sum, item) => sum + item.revenue, 0);
+  const shares = categoryRevenue.map(item => item.revenue / total * 100);
+  const percentages = shares.map(Math.floor);
+  // Largest-remainder rounding keeps the displayed composition at 100%.
+  shares.map((share, index) => ({index, remainder: share % 1}))
+    .sort((a, b) => b.remainder - a.remainder)
+    .slice(0, 100 - percentages.reduce((sum, value) => sum + value, 0))
+    .forEach(({index}) => { percentages[index] += 1; });
+  return <svg className="cover-chart" viewBox="0 0 274 190" role="img" aria-label="Share of product gross revenue by category: Nutrition approximately 62%, Hydration 13%, Wellness 8%, and other categories 17%. Other combines Vitamins, Energy and Accessories. From the project's synthetic dataset.">
+    {categoryRevenue.map(({category, revenue}, index) => {
+      const y = 10 + index * 43, share = revenue / total;
+      return <g key={category}>
+        <text x="0" y={y + 2}>{category}</text>
+        <text x="274" y={y + 2} textAnchor="end">{percentages[index]}%</text>
+        <rect x="0" y={y + 10} width="274" height="15" rx="2" fill="currentColor" opacity=".07" />
+        <rect x="0" y={y + 10} width={274 * share} height="15" rx="2" fill="currentColor" />
+      </g>;
+    })}
   </svg>;
 }
 
@@ -56,8 +65,8 @@ export function ProjectCover({ project }: { project: Project }) {
   const lines = energy ? ["Energy Sector", "Analytics"] : fintech ? ["Fintech Product", "Analytics"] : ["Ecommerce", "Analytics"];
   return <div className="project-cover">
     <span className="cover-title">{lines[0]}<br />{lines[1]}</span>
-    <p className="cover-subtitle">{energy ? "Monthly oil production · Vaca Muerta" : fintech ? "Application-to-funding funnel" : "Customer retention by cohort"}</p>
-    {energy ? <OilChart /> : fintech ? <FunnelChart /> : <RetentionChart />}
+    <p className="cover-subtitle">{energy ? "Monthly oil production · Vaca Muerta" : fintech ? "Application-to-funding funnel" : "Revenue mix by category"}</p>
+    {energy ? <OilChart /> : fintech ? <FunnelChart /> : <RevenueMixChart />}
     <div className="cover-footer"><p className="cover-caption">{energy ? "Official production records" : "Synthetic data"}</p><span className="cover-action">View case study <span aria-hidden="true">↗</span></span></div>
   </div>;
 }
