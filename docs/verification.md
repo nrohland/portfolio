@@ -113,3 +113,18 @@ Antislop delivery gate: hard gate PASS (source-backed shares and synthetic discl
 PR #2 was merged at a2cbb89 and deployed from main to https://nicolas-rohland.vercel.app on Vercel Hobby, connected to the existing GitHub repository. NEXT_PUBLIC_SITE_URL is set to that origin for production and preview. The public homepage renders all three final charts and its canonical URL points to the new domain; all non-anchor/non-email links retain new-tab targets. Desktop 1440px and mobile 390px have no overflow or browser warnings/errors.
 
 The shared stack now uses official multicolor SVG assets for Airflow and Python, plus official Google Cloud color SVGs for BigQuery and Looker. Existing Simple Icons brand colors for dbt, DuckDB, ClickHouse, Metabase, Next.js, GitHub and LinkedIn remain. Meltano already uses the official asset. Labels, dimensions and original artwork are preserved. Fresh lint, typecheck, static Webpack build and diff check pass; all official logo images loaded at 20px in the desktop hero and desktop/mobile visual review passed. Favicon and project covers are unchanged.
+
+## Approved project copy and process diagram, 2026-10-03
+
+The owner-approved project headlines and Friction / Solution / Output copy now appear on the homepage and case pages. Ecommerce and Fintech show Completed; Energy shows In Development. Completed describes the portfolio scope, not production usage. The synthetic-data and scope disclosures remain. My role has been removed from all four content pages. The short cover titles and their charts stay as approved.
+
+How I build is a five-stage, labeled ordered list: Find the sources, Explore & clean, Model, Test, Visualize. Static connecting lines and arrows express sequence; they are hidden from assistive technologies. The diagram is horizontal on desktop and vertical below 700px. Its descriptions are the owner's approved copy. No library, animation or new runtime JavaScript was added.
+
+Validation: lint, typecheck, production Webpack build and diff check passed. All four content pages passed local route, anchor and canonical-metadata checks. Desktop 1440px and mobile 390px screenshots reviewed; browser measurements show no overflow at 1440/390/320px. The process has five stages, aligned in one row on desktop and one column on mobile. No browser warnings/errors were observed. No existing test suite. The hosted PageSpeed attempt returned HTTP 429, so no Lighthouse score is claimed.
+
+Antislop delivery gate:
+- Hard Gate PASS: owner-approved copy adds no invented metrics or integrations; existing chart disclosures remain; the diagram is semantic HTML; all local destinations exist; tested widths have no overflow and the production build succeeds.
+- Purpose Gate PASS: dots, lines and arrows express process order rather than decoration; labels and descriptions provide the equivalent text; bold definition labels help scan the three project questions. No new shadows, gradients, badges or motion.
+- Liveliness PASS: ENERGY 1 / RHYTHM 2 / MOTION 1 retained from the approved editorial direction. Shared IBM Plex Sans and green palette remain; the wide process diagram contrasts with the project rows and compact hero.
+- Craftsmanship PASS: inspected desktop/mobile screenshots show readable labels, aligned stages and contained text; the existing visible focus and reduced-motion rules remain; static ordered content needs no loading/empty/error state.
+- Copywriting PASS: headlines and descriptions match the owner's approved text, with no fabricated performance or impact claims; completion labels retain synthetic/scope context; technical case details remain source-backed.
