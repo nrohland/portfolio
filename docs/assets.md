@@ -12,4 +12,6 @@
 
 - Airflow: unmodified multicolor official SVG from https://airflow.apache.org/images/airflow-icon.svg, linked by https://airflow.apache.org/community/resources/. The single-color Simple Icons variant was replaced.
 - Python: official two-snakes SVG from https://s3.dualstack.us-east-2.amazonaws.com/pythondotorg-assets/media/files/python-logo-only.svg, linked by https://www.python.org/community/logos/. A viewBox matching its original artboard was added for responsive sizing; original colors and artwork are retained.
-- BigQuery and Looker: official color SVGs from https://services.google.com/fh/files/misc/google-cloud-legacy-icons.zip, linked by https://cloud.google.com/icons. Replaces single-color variants with the recognizable official console icons and their original shades.
+- BigQuery: official color SVG from https://services.google.com/fh/files/misc/google-cloud-legacy-icons.zip, linked by https://cloud.google.com/icons. Replaces the single-color variant with the recognizable official console icon and its original shades.
+
+- Looker: official four-color SVG from `Unique Icons/Looker/SVG/Looker-512-color.svg` in https://services.google.com/fh/files/misc/core-products-icons.zip, linked by https://cloud.google.com/icons. Owner-selected multicolor variant, with the original artwork and palette preserved.
