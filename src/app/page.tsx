@@ -1,6 +1,7 @@
 import { contact, profile, projects, technologyGroups } from "@/data/site";
 import { ProjectCover } from "@/components/project-cover";
 import { BuildProcess } from "@/components/build-process";
+import { Stack } from "@/components/stack";
 import Link from "next/link";
 
 const introductions = [
@@ -94,7 +95,7 @@ export default function Page() {
                   </Link>
                 </h3>
                 <p className="project-line">{introductions[index].line}</p>
-                <p className="metadata">{project.stack.join(" · ")}</p>
+                <Stack items={project.stack} />
                 <Link
                   className="arrow-link case-cta"
                   href={`/projects/${project.slug}/`}
@@ -135,7 +136,7 @@ export default function Page() {
               <h3 className="eyebrow">
                 {["Model", "Warehouse", "Product"][index]}
               </h3>
-              <p>{group.items.join(" · ")}</p>
+              <Stack items={group.items} />
             </div>
           ))}
         </div>

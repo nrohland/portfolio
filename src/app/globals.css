@@ -184,7 +184,27 @@ ol {
 }
 .project-cover {
   position: relative;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 24px;
+  padding: clamp(24px, 3vw, 44px);
+  background: #eeeee7;
+  border: 1px solid var(--line);
+  border-radius: 8px;
 }
+.cover-title { font-size:clamp(27px,3vw,44px); font-weight:500; line-height:1.18; letter-spacing:-.04em; }
+.cover-subtitle { font-size:14px; color:var(--muted); }
+.project-cover .cover-chart { width:100%; max-width:460px; max-height:320px; height:auto; margin-inline:auto; color:var(--accent); }
+.project-cover .cover-chart text { font-family:inherit; font-size:12.5px; fill:var(--ink); }
+.project-cover .cover-chart .secondary { fill:var(--muted); }
+.project-cover .chart-grid { stroke:var(--line); }
+.cover-footer { display:flex; justify-content:space-between; align-items:end; gap:16px; }
+.cover-caption { font-size:11px; color:var(--muted); }
+.cover-action { font-size:12px; white-space:nowrap; }
+.cover-link:hover .cover-action { text-decoration:underline; }
+.project-3 .project-cover, .case-opening .project-cover { grid-template-columns:1fr 1.2fr; grid-template-rows:auto auto 1fr; gap:16px 6%; }
+.project-3 .project-cover .cover-chart, .case-opening .project-cover .cover-chart { grid-column:2; grid-row:1/4; }
+.project-3 .project-cover .cover-footer, .case-opening .project-cover .cover-footer { align-self:end; }
 .project-cover img {
   display: block;
   width: 100%;
@@ -271,34 +291,27 @@ ol {
 .about-section {
   padding-top: 40px;
 }
-.build-process {
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 32px;
-  padding-block: 50px 35px;
-}
-.stage-title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  font-size: clamp(25px, 2.65vw, 42px);
-  letter-spacing: -0.05em;
-  margin-top: 15px;
-  line-height: 1.2;
-}
-.stage-title span {
-  font-size: 24px;
-  color: var(--accent);
-}
-.build-process p {
-  font-size: 13px;
-  line-height: 1.5;
-  max-width: 165px;
-  color: var(--muted);
-  margin-top: 16px;
-}
+.build-process { margin-block:30px 20px; border:1px solid var(--line); border-radius:8px; overflow:hidden; background:#fff; }
+.build-process figcaption { padding:12px 20px; border-bottom:1px solid var(--line); font-size:13px; color:var(--muted); }
+.build-process svg { width:100%; height:auto; font-family:inherit; }
+.workflow-desktop { display:block; }
+.workflow-mobile { display:none; }
+.workflow-connections path { fill:none; stroke:#7c8c76; stroke-width:1.3; }
+.workflow-layer { fill:#f3f5ef; stroke:#bdc8b7; }
+.workflow-node rect { fill:#fff; stroke:#aebba8; }
+.workflow-title { fill:var(--ink); font-size:15px; font-weight:500; }
+.workflow-detail { fill:var(--muted); font-size:12px; }
+.workflow-labels { fill:var(--accent); font-size:13px; font-weight:500; }
+.workflow-motion circle { fill:var(--accent); }
+.tech-stack { display:flex; flex-wrap:wrap; gap:12px 18px; list-style:none; padding:0; }
+.tech-stack li { display:inline-flex; align-items:center; gap:7px; font-size:13px; }
+.tech-stack svg, .brand-logo { width:20px; height:20px; flex-shrink:0; object-fit:contain; }
+.tech-stack .duckdb-logo { background:#fff000; padding:2px; border-radius:2px; }
+.project-info .tech-stack { margin-top:32px; }
+.project-3 .tech-stack { grid-column:2; }
+.case-meta .tech-stack { flex:1; }
+@media(max-width:900px) { .workflow-desktop { display:none; } .workflow-mobile { display:block; max-width:420px; margin-inline:auto; } }
+@media(prefers-reduced-motion:reduce) { .workflow-motion { display:none; } }
 .text-link {
   display: inline-flex;
   align-items: center;
@@ -698,9 +711,6 @@ ol {
   .project-2 .project-info {
     padding-left: 0;
   }
-  .build-process {
-    gap: 20px;
-  }
   .stack-section {
     grid-template-columns: 1fr;
   }
@@ -817,35 +827,10 @@ ol {
   .about-section {
     padding-top: 15px;
   }
-  .build-process {
-    grid-template-columns: 1fr;
-    padding-block: 25px;
-    gap: 0;
-  }
-  .build-process li {
-    display: grid;
-    grid-template-columns: 30px 1fr;
-    gap: 0 16px;
-    padding-block: 20px;
-    border-bottom: 1px solid var(--line);
-  }
-  .build-process li > .eyebrow {
-    padding-top: 9px;
-  }
-  .stage-title {
-    margin: 0;
-    font-size: 32px;
-    justify-content: flex-start;
-    gap: 25px;
-  }
-  .stage-title span {
-    transform: rotate(90deg);
-  }
-  .build-process p {
-    grid-column: 2;
-    max-width: none;
-    margin-top: 8px;
-  }
+  .project-info .tech-stack { margin-top:22px; }
+  .project-cover { gap:20px; padding:24px; }
+  .project-3 .project-cover, .case-opening .project-cover { grid-template-columns:1fr; grid-template-rows:auto auto 1fr auto; }
+  .project-3 .project-cover .cover-chart, .case-opening .project-cover .cover-chart { grid-column:1; grid-row:3; }
   .stack-section {
     padding-block: 30px 65px;
     gap: 22px;

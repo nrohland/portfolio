@@ -186,29 +186,15 @@ function OilChart() {
   );
 }
 
-export function ProjectCover({ project }: { project: Project }) {
+export function ProjectCover({ project, detail = false }: { project: Project; detail?: boolean }) {
+  const energy = project.slug === "barrilito", fintech = project.slug === "lendflow";
+  const lines = energy ? ["Energy Sector", "Analytics"] : fintech ? ["Fintech Product", "Analytics"] : ["Ecommerce", "Analytics"];
   return (
-    <figure className={`project-cover cover-${project.slug}`}>
-      <img
-        src={`/case-studies/${project.slug}-cover.webp`}
-        alt={
-          project.slug === "northstar"
-            ? "Illustration of an ecommerce warehouse and an analytics workspace"
-            : project.slug === "lendflow"
-              ? "Illustration of a fintech analytics workspace"
-              : "Illustration of a drilling site in Vaca Muerta"
-        }
-        width={1000}
-        height={563}
-      />
-      <figcaption>
-        Illustration ·{" "}
-        {project.slug === "barrilito"
-          ? "Vaca Muerta"
-          : project.slug === "lendflow"
-            ? "Fintech"
-            : "Commerce"}
-      </figcaption>
-    </figure>
+    <div className={`project-cover cover-${project.slug}`}>
+      <span className="cover-title">{lines[0]}<br />{lines[1]}</span>
+      <p className="cover-subtitle">{energy ? "Monthly oil production · Vaca Muerta" : fintech ? "Application-to-funding funnel" : "Revenue mix by category"}</p>
+      {energy ? <OilChart /> : fintech ? <FunnelChart /> : <RevenueMixChart />}
+      <div className="cover-footer"><p className="cover-caption">{energy ? "Official production records" : "Synthetic data"}</p>{!detail && <span className="cover-action">View case study <span aria-hidden="true">↗</span></span>}</div>
+    </div>
   );
 }
