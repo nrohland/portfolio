@@ -291,14 +291,14 @@ ol {
 .about-section {
   padding-top: 40px;
 }
-.build-process { margin-block:30px 20px; border:1px solid var(--line); border-radius:8px; overflow:hidden; background:#fff; }
+.build-process { margin-block:30px 20px; overflow:hidden; background:transparent; }
 .build-process figcaption { padding:12px 20px; border-bottom:1px solid var(--line); font-size:13px; color:var(--muted); }
 .build-process svg { width:100%; height:auto; font-family:inherit; }
 .workflow-desktop { display:block; }
 .workflow-mobile { display:none; }
 .workflow-connections path { fill:none; stroke:#7c8c76; stroke-width:1.3; }
 .workflow-layer { fill:#f3f5ef; stroke:#bdc8b7; }
-.workflow-node rect { fill:#fff; stroke:#aebba8; }
+.workflow-node rect { fill:var(--paper); stroke:#aebba8; }
 .workflow-title { fill:var(--ink); font-size:15px; font-weight:500; }
 .workflow-detail { fill:var(--muted); font-size:12px; }
 .workflow-labels { fill:var(--accent); font-size:13px; font-weight:500; }
