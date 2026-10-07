@@ -1,47 +1,174 @@
 import { contact, profile, projects, technologyGroups } from "@/data/site";
 import { ProjectCover } from "@/components/project-cover";
-import { Stack } from "@/components/stack";
-import { ProjectLinks } from "@/components/project-links";
-import { SocialLink } from "@/components/social-link";
 import { BuildProcess } from "@/components/build-process";
+import Link from "next/link";
 
+const introductions = [
+  {
+    category: "Commerce",
+    title: "Ecommerce Profitability",
+    line: "Revenue isn’t profit.",
+  },
+  {
+    category: "Fintech",
+    title: "Fintech Product Analytics",
+    line: "Where conversion breaks down.",
+  },
+  {
+    category: "Energy · In development",
+    title: "Energy Sector Analytics",
+    line: "Vaca Muerta’s public records, made comparable.",
+  },
+];
 export default function Page() {
-  return <main id="content" className="wrap">
-    <section className="hero" aria-labelledby="name">
-      <div className="hero-top"><h1 id="name">{profile.name}</h1>
-        <div className="hero-contact"><SocialLink name="GitHub" href={contact.github} /><SocialLink name="LinkedIn" href={contact.linkedin} /><a href={`mailto:${contact.email}`}>{contact.email}</a></div>
-      </div>
-      <p className="hero-summary">Analytics Engineer / Data &amp; AI. I build data models, shared metrics and analytical products.</p>
-      <Stack items={technologyGroups.flatMap(group => group.items)} />
-      <nav className="hero-navigation" aria-label="Main navigation"><a className="primary-link" href="#work">Selected work <span aria-hidden="true">↓</span></a><a href="#about">About</a><a href="#contact">Contact</a></nav>
-    </section>
-    <section id="work" className="work" aria-labelledby="work-title">
-      <div className="section-heading"><h2 id="work-title">Selected work</h2><p>Business questions, built into products.</p></div>
-      <div className="project-list">{projects.map((project, index) => <article key={project.slug} className="project-row" aria-labelledby={`${project.slug}-title`}>
-        <a href={`/projects/${project.slug}/`} className="cover-link" aria-label={`Read the ${project.title} case study`}><ProjectCover project={project} /></a>
-        <div className="project-info"><p className="project-category"><span className="project-number">0{index + 1}</span>{project.category}</p>
-          <h3 id={`${project.slug}-title`}><a href={`/projects/${project.slug}/`}>{project.title}</a><span>{project.thesis}</span></h3>
-          <dl className="project-summary">
-            <div><dt>The Friction</dt><dd>{project.problem}</dd></div>
-            <div><dt>The Solution</dt><dd>{project.solution}</dd></div>
-            <div><dt>The Output</dt><dd>{project.outcome}</dd></div>
-          </dl>
-          <Stack items={project.stack} /><ProjectLinks project={project} />
+  return (
+    <main id="content">
+      <section className="hero wrap" aria-labelledby="hero-title">
+        <div className="hero-top">
+          <span className="name">{profile.name}</span>
+          <nav aria-label="Main navigation">
+            <a href="#work">Work</a>
+            <a href="#about">Approach</a>
+            <a href="#contact">Contact ↗</a>
+          </nav>
         </div>
-      </article>)}</div>
-    </section>
-    <section id="stack" className="stack-section" aria-labelledby="stack-title">
-      <div className="section-heading"><h2 id="stack-title">Tools behind the work</h2><p>Selected for the problem at hand.</p></div>
-      <div className="technology-groups">{technologyGroups.map(group => <div key={group.name}><h3>{group.name}</h3><Stack items={group.items} /></div>)}</div>
-      <p className="stack-note">Conversational analytics appears in the ecommerce and fintech projects as curated, deterministic demos with visible SQL.</p>
-    </section>
-    <section id="about" className="about-section" aria-labelledby="about-title">
-      <h2 id="about-title">How I build</h2>
-      <BuildProcess />
-      <a className="text-link process-profile" href={contact.linkedin} target="_blank" rel="noopener noreferrer">Professional background on LinkedIn</a>
-    </section>
-    <footer id="contact" className="contact-section" aria-labelledby="contact-title"><p>Have a data problem in mind?</p><h2 id="contact-title">Let’s talk.</h2>
-      <a className="email-link" href={`mailto:${contact.email}`}>{contact.email}</a><div className="footer-bottom"><span>© {new Date().getFullYear()} Nicolás Rohland</span><div><SocialLink name="GitHub" href={contact.github} /><SocialLink name="LinkedIn" href={contact.linkedin} /><a href="#content">Back to top ↑</a></div></div>
-    </footer>
-  </main>;
+        <div className="hero-main">
+          <p className="eyebrow">
+            Data models. Shared metrics. Analytical products.
+          </p>
+          <h1 id="hero-title">
+            Analytics
+            <br />
+            <span>Engineer.</span>
+          </h1>
+          <p className="hero-summary">
+            I turn messy data into metrics,
+            <br className="desktop-break" /> products and decisions.
+          </p>
+        </div>
+        <div className="hero-bottom">
+          <a className="arrow-link" href="#work">
+            Selected work <span aria-hidden="true">↓</span>
+          </a>
+          <div>
+            <a
+              href={contact.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LinkedIn
+            </a>
+            <span aria-hidden="true"> · </span>
+            <a href={contact.github} target="_blank" rel="noopener noreferrer">
+              GitHub
+            </a>
+          </div>
+        </div>
+      </section>
+      <section id="work" className="work wrap" aria-labelledby="work-title">
+        <div className="section-label">
+          <h2 id="work-title">Selected work</h2>
+          <span>01—03</span>
+        </div>
+        <div className="project-list">
+          {projects.map((project, index) => (
+            <article
+              key={project.slug}
+              className={`project-row project-${index + 1}`}
+              aria-labelledby={`${project.slug}-title`}
+            >
+              <Link
+                href={`/projects/${project.slug}/`}
+                className="cover-link"
+                aria-label={`Explore ${project.title}`}
+              >
+                <ProjectCover project={project} />
+              </Link>
+              <div className="project-info">
+                <p className="eyebrow">
+                  0{index + 1} — {introductions[index].category}
+                </p>
+                <h3 id={`${project.slug}-title`}>
+                  <Link href={`/projects/${project.slug}/`}>
+                    {introductions[index].title}
+                  </Link>
+                </h3>
+                <p className="project-line">{introductions[index].line}</p>
+                <p className="metadata">{project.stack.join(" · ")}</p>
+                <Link
+                  className="arrow-link case-cta"
+                  href={`/projects/${project.slug}/`}
+                >
+                  Explore case study <span aria-hidden="true">↗</span>
+                </Link>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+      <section
+        id="about"
+        className="about-section wrap"
+        aria-labelledby="about-title"
+      >
+        <div className="section-label">
+          <h2 id="about-title">How I build</h2>
+          <span>From sources to useful analytics</span>
+        </div>
+        <BuildProcess />
+        <a
+          className="text-link process-profile"
+          href={contact.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Professional background on LinkedIn ↗
+        </a>
+      </section>
+      <section className="stack-section wrap" aria-labelledby="stack-title">
+        <h2 id="stack-title" className="eyebrow">
+          Tools behind the work
+        </h2>
+        <div className="technology-groups">
+          {technologyGroups.map((group, index) => (
+            <div key={group.name}>
+              <h3 className="eyebrow">
+                {["Model", "Warehouse", "Product"][index]}
+              </h3>
+              <p>{group.items.join(" · ")}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+      <footer id="contact" className="contact-section">
+        <div className="wrap">
+          <p>Have a data problem?</p>
+          <h2>
+            <a href={`mailto:${contact.email}`}>
+              Let’s talk<span aria-hidden="true">↗</span>
+            </a>
+          </h2>
+          <div className="contact-links">
+            <a href={`mailto:${contact.email}`}>Email</a>
+            <a
+              href={contact.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LinkedIn
+            </a>
+            <a href={contact.github} target="_blank" rel="noopener noreferrer">
+              GitHub
+            </a>
+          </div>
+          <div className="footer-bottom">
+            <span>
+              © {new Date().getFullYear()} {profile.name}
+            </span>
+            <a href="#content">Back to top ↑</a>
+          </div>
+        </div>
+      </footer>
+    </main>
+  );
 }
