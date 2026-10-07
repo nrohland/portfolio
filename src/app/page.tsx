@@ -18,9 +18,9 @@ export default function Page() {
     <section id="work" className="work" aria-labelledby="work-title">
       <div className="section-heading"><h2 id="work-title">Selected work</h2><p>Business questions, built into products.</p></div>
       <div className="project-list">{projects.map((project, index) => <article key={project.slug} className="project-row" aria-labelledby={`${project.slug}-title`}>
-        <a href={`/projects/${project.slug}/`} className="cover-link" aria-label={`Read the ${project.title} case study`} target="_blank" rel="noopener noreferrer"><ProjectCover project={project} /></a>
+        <a href={`/projects/${project.slug}/`} className="cover-link" aria-label={`Read the ${project.title} case study`}><ProjectCover project={project} /></a>
         <div className="project-info"><p className="project-category"><span className="project-number">0{index + 1}</span>{project.category}</p>
-          <h3 id={`${project.slug}-title`}><a href={`/projects/${project.slug}/`} target="_blank" rel="noopener noreferrer">{project.title}</a><span>{project.thesis}</span></h3>
+          <h3 id={`${project.slug}-title`}><a href={`/projects/${project.slug}/`}>{project.title}</a><span>{project.thesis}</span></h3>
           <dl className="project-summary">
             <div><dt>The Friction</dt><dd>{project.problem}</dd></div>
             <div><dt>The Solution</dt><dd>{project.solution}</dd></div>
