@@ -11,6 +11,7 @@ import {
   ProjectCover,
 } from "@/components/project-cover";
 import { ProjectLinks } from "@/components/project-links";
+import { Stack } from "@/components/stack";
 export const dynamicParams = false;
 export function generateStaticParams() {
   return projects.map(({ slug }) => ({ slug }));
@@ -64,12 +65,12 @@ export default async function ProjectPage({
           <h1>{project.title}</h1>
           <p className="case-thesis">{project.thesis}</p>
           <div className="case-meta">
-            <p className="metadata">{project.stack.join(" · ")}</p>
+            <Stack items={project.stack} />
             <ProjectLinks project={project} detail />
           </div>
         </header>
         <div className="case-opening">
-          <ProjectCover project={project} />
+          <ProjectCover project={project} detail />
         </div>
         <section className="case-section problem">
           <h2 className="eyebrow">01 — Problem</h2>
