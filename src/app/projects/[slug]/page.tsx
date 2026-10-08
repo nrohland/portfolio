@@ -2,217 +2,49 @@ import { Header } from "@/components/header";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
-import Image from "next/image";
 import { projects } from "@/data/site";
-import {
-  BasinChart,
-  FunnelChart,
-  RevenueMixChart,
-  ProjectCover,
-} from "@/components/project-cover";
 import { ProjectLinks } from "@/components/project-links";
 import { Stack } from "@/components/stack";
+import { DashboardCapture, LendingFunnel, EnergySeries, EcommerceStory, FintechStory, EnergyStory } from "@/components/case-stories";
+
+const caseTitles: Record<string, string> = { northstar: "Ecommerce Profitability", lendflow: "Lending Funnel Analytics", barrilito: "Vaca Muerta" };
+const descriptions: Record<string, string> = {
+  northstar: "A reproducible data product connecting SKU margins, customer economics and advertising efficiency. Synthetic commerce data; real analytical implementation.",
+  lendflow: "A product analytics case study following applicants from their first event to a funded loan. Synthetic applications; tested models and a working dashboard.",
+  barrilito: "An open-data engineering project turning public production records into tested analytical marts. Data pipeline built; public interface in development.",
+};
+const decisionTitles: Record<string, string[]> = {
+  northstar: ["Why a fixed seed?", "Why calculate ratios in SQL?", "Why a static export?"],
+  lendflow: ["Why define populations first?", "Why dbt on DuckDB?", "Why curated questions?"],
+  barrilito: ["Why monthly ingestion?", "Why two denominators?", "Why keep conversions upstream?"],
+};
 export const dynamicParams = false;
-export function generateStaticParams() {
-  return projects.map(({ slug }) => ({ slug }));
-}
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}): Promise<Metadata> {
+export function generateStaticParams() { return projects.map(({ slug }) => ({ slug })); }
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const project = projects.find((p) => p.slug === slug);
+  const project = projects.find(p => p.slug === slug);
   if (!project) return {};
-  return {
-    title: project.title,
-    description: project.outcome,
-    alternates: { canonical: `/projects/${slug}/` },
-    openGraph: {
-      title: `${project.title} | Nicolás Rohland`,
-      description: project.outcome,
-      url: `/projects/${slug}/`,
-      images: ["/og.png"],
-    },
-  };
+  return { title: caseTitles[slug], description: descriptions[slug], alternates: { canonical: `/projects/${slug}/` }, openGraph: { title: `${caseTitles[slug]} | Nicolás Rohland`, description: descriptions[slug], url: `/projects/${slug}/`, images: ["/og.png"] } };
 }
-const insights = [
-  "Revenue growth can hide weak margins.",
-  "Approval rates hide the drop-offs.",
-  "Different grains. Different denominators.",
-];
-export default async function ProjectPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const index = projects.findIndex((p) => p.slug === slug);
+  const index = projects.findIndex(p => p.slug === slug);
   const project = projects[index];
   if (!project) notFound();
   const next = projects[(index + 1) % projects.length];
-  return (
-    <>
-      <Header />
-      <main id="content" className="case-page wrap">
-        <Link className="text-link" href="/#work">
-          ← Selected work
-        </Link>
-        <header className="case-heading">
-          <p className="eyebrow">
-            0{index + 1} — {project.category}
-          </p>
-          <h1>{project.title}</h1>
-          <p className="case-thesis">{project.thesis}</p>
-          <div className="case-meta">
-            <Stack items={project.stack} />
-            <ProjectLinks project={project} detail />
-          </div>
-        </header>
-        <div className="case-opening">
-          <ProjectCover project={project} detail />
-        </div>
-        <section className="case-section problem">
-          <h2 className="eyebrow">01 — Problem</h2>
-          <div>
-            <p className="case-lead">{project.problem}</p>
-            <p>{project.solution}</p>
-          </div>
-        </section>
-        <section className="insight">
-          <p className="eyebrow">Key insight</p>
-          <h2>{insights[index]}</h2>
-          {slug === "barrilito" && (
-            <p>
-              Separate basin production per calendar day from well productivity
-              per effective operating day.
-            </p>
-          )}
-        </section>
-        <figure className={`evidence evidence-${slug}`}>
-          <div className="evidence-intro">
-            <p className="eyebrow">
-              Evidence /{" "}
-              {slug === "barrilito"
-                ? "Official 2025 snapshot"
-                : "Synthetic dataset"}
-            </p>
-            <h2>
-              {slug === "northstar"
-                ? "Revenue mix by category"
-                : slug === "lendflow"
-                  ? "Application to funding"
-                  : "Monthly oil production"}
-            </h2>
-            <p>
-              {slug === "northstar"
-                ? "Share of product gross revenue. Other combines Vitamins, Energy and Accessories."
-                : slug === "lendflow"
-                  ? "Every stage uses started applications as the denominator."
-                  : "Vaca Muerta · January–December 2025 · million m³"}
-            </p>
-          </div>
-          <div className="evidence-chart">
-            {slug === "northstar" ? (
-              <RevenueMixChart />
-            ) : slug === "lendflow" ? (
-              <FunnelChart />
-            ) : (
-              <BasinChart />
-            )}
-          </div>
-          <figcaption>
-            {slug === "barrilito"
-              ? "Committed mart snapshot. No 2026 coverage or live telemetry."
-              : "Descriptive evidence from the project dataset; no measured business impact is claimed."}
-          </figcaption>
-        </figure>
-        <section className="architecture-section">
-          <div className="case-section">
-            <h2 className="eyebrow">02 — How I modeled it</h2>
-            <p className="case-lead">{project.solution}</p>
-          </div>
-          <ol
-            className="architecture-flow"
-            aria-label="Data architecture, in processing order"
-          >
-            {project.flow.map((step, i) => (
-              <li key={step}>
-                <span className="eyebrow">0{i + 1}</span>
-                <h3>{step}</h3>
-                {i < project.flow.length - 1 && (
-                  <span className="flow-arrow" aria-hidden="true">
-                    →
-                  </span>
-                )}
-              </li>
-            ))}
-          </ol>
-        </section>
-        <section className="case-section result">
-          <h2 className="eyebrow">03 — Result</h2>
-          <p className="case-lead">{project.outcome}</p>
-        </section>
-        <figure className="case-visual">
-          {project.image ? (
-            <Image
-              src={project.image}
-              alt={project.imageAlt || project.title}
-              width={1440}
-              height={1000}
-              sizes="(max-width: 700px) 100vw, 1280px"
-            />
-          ) : (
-            <div className="energy-output">
-              <p className="eyebrow">
-                Mart output · Official production records
-              </p>
-              <BasinChart />
-            </div>
-          )}
-          <figcaption>
-            {project.disclosure}
-            {slug === "barrilito"
-              ? " · Chart of the committed 2025 mart snapshot; not a product screenshot."
-              : " · Actual dashboard screenshot."}
-          </figcaption>
-        </figure>
-        <section className="case-section decisions-section">
-          <h2 className="eyebrow">04 — Technical decisions</h2>
-          <ol className="decisions">
-            {project.decisions.map((decision, i) => (
-              <li key={decision}>
-                <span className="eyebrow">0{i + 1}</span>
-                <p>{decision}</p>
-              </li>
-            ))}
-          </ol>
-        </section>
-        <section className="case-section limitations">
-          <h2 className="eyebrow">Scope & limitations</h2>
-          <div>
-            <p>{project.limitations}</p>
-            <a
-              className="text-link"
-              href={project.sourceUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Read the source documentation ↗
-            </a>
-          </div>
-        </section>
-        <footer className="case-footer">
-          <p className="eyebrow">Next case study</p>
-          <Link href={`/projects/${next.slug}/`}>
-            {next.title}
-            <span aria-hidden="true">↗</span>
-          </Link>
-          <Link className="text-link" href="/#work">
-            Back to selected work
-          </Link>
-        </footer>
-      </main>
-    </>
-  );
+  return <><Header/><main id="content" className={`case-page case-editorial case-${slug} wrap`}>
+    <Link className="text-link" href="/#work">← Selected work</Link>
+    <header className="case-heading">
+      <p className="eyebrow">0{index+1} — {project.category}</p>
+      <h1>{caseTitles[slug]}</h1>
+      <p className="case-thesis">{slug === "barrilito" ? "Public records. Comparable production." : project.thesis}</p>
+      <p className="case-description">{descriptions[slug]}</p>
+      <div className="case-meta"><Stack items={project.stack}/><ProjectLinks project={project} detail/></div>
+    </header>
+    {slug === "northstar" ? <DashboardCapture/> : slug === "lendflow" ? <LendingFunnel/> : <EnergySeries/>}
+    {slug === "northstar" ? <EcommerceStory/> : slug === "lendflow" ? <FintechStory/> : <EnergyStory/>}
+    <section className="story-decisions"><div className="story-section-heading"><p className="eyebrow">Technical choices</p><h2>Decisions behind the product.</h2></div><ol>{project.decisions.map((decision,i)=><li key={decision}><p className="eyebrow">0{i+1}</p><h3>{decisionTitles[slug][i]}</h3><p>{decision}</p></li>)}</ol></section>
+    <aside className="story-limitations" aria-labelledby="limitations-title"><h2 id="limitations-title" className="eyebrow">Scope & limitations</h2><div><p>{project.limitations}</p>{slug === "northstar" && <p>All monetary measures are USD. The dataset spans 2024–2025. This is an analytical simulation, not a client engagement.</p>}{slug === "lendflow" && <p>The source window is January 6–June 29, 2025. Segment differences are descriptive; they do not prove a cause.</p>}<a className="text-link" href={project.sourceUrl} target="_blank" rel="noopener noreferrer">Read the source documentation ↗</a></div></aside>
+    <footer className="case-footer"><p className="eyebrow">Next project</p><Link href={`/projects/${next.slug}/`}>{caseTitles[next.slug]}<span aria-hidden="true">→</span></Link><Link className="text-link" href="/#work">Back to selected work</Link></footer>
+  </main></>;
 }
