@@ -615,7 +615,162 @@
         "unit": "proportion",
         "population": "applications with application_started"
       }
-    ]
+    ],
+    "steps": [
+      {
+        "metric_name": "step_conversion_rate",
+        "stage_name": "application_started",
+        "slice_name": "overall",
+        "slice_value": "all",
+        "numerator": 79079,
+        "denominator": 100000,
+        "metric_value": 0.79079,
+        "unit": "proportion",
+        "population": "applications that reached this stage"
+      },
+      {
+        "metric_name": "step_conversion_rate",
+        "stage_name": "approved",
+        "slice_name": "overall",
+        "slice_value": "all",
+        "numerator": 16882,
+        "denominator": 22351,
+        "metric_value": 0.7553129614,
+        "unit": "proportion",
+        "population": "applications that reached this stage"
+      },
+      {
+        "metric_name": "step_conversion_rate",
+        "stage_name": "bank_connected",
+        "slice_name": "overall",
+        "slice_value": "all",
+        "numerator": 50968,
+        "denominator": 56036,
+        "metric_value": 0.9095581412,
+        "unit": "proportion",
+        "population": "applications that reached this stage"
+      },
+      {
+        "metric_name": "step_conversion_rate",
+        "stage_name": "bank_connection_started",
+        "slice_name": "overall",
+        "slice_value": "all",
+        "numerator": 56036,
+        "denominator": 70127,
+        "metric_value": 0.7990645543,
+        "unit": "proportion",
+        "population": "applications that reached this stage"
+      },
+      {
+        "metric_name": "step_conversion_rate",
+        "stage_name": "contract_signed",
+        "slice_name": "overall",
+        "slice_value": "all",
+        "numerator": 13065,
+        "denominator": 14587,
+        "metric_value": 0.8956605196,
+        "unit": "proportion",
+        "population": "applications that reached this stage"
+      },
+      {
+        "metric_name": "step_conversion_rate",
+        "stage_name": "identity_verified",
+        "slice_name": "overall",
+        "slice_value": "all",
+        "numerator": 45692,
+        "denominator": 50968,
+        "metric_value": 0.8964840684,
+        "unit": "proportion",
+        "population": "applications that reached this stage"
+      },
+      {
+        "metric_name": "step_conversion_rate",
+        "stage_name": "personal_info_completed",
+        "slice_name": "overall",
+        "slice_value": "all",
+        "numerator": 70127,
+        "denominator": 79079,
+        "metric_value": 0.8867967476,
+        "unit": "proportion",
+        "population": "applications that reached this stage"
+      },
+      {
+        "metric_name": "step_conversion_rate",
+        "stage_name": "vehicle_selected",
+        "slice_name": "overall",
+        "slice_value": "all",
+        "numerator": 14587,
+        "denominator": 16882,
+        "metric_value": 0.8640563914,
+        "unit": "proportion",
+        "population": "applications that reached this stage"
+      }
+    ],
+    "bankBrowsers": [
+      {
+        "metric_name": "bank_connection_completion_rate",
+        "stage_name": null,
+        "slice_name": "device_browser",
+        "slice_value": "desktop|safari",
+        "numerator": 1888,
+        "denominator": 2091,
+        "metric_value": 0.9029172645,
+        "unit": "proportion",
+        "population": "applications with bank_connection_started"
+      },
+      {
+        "metric_name": "bank_connection_completion_rate",
+        "stage_name": null,
+        "slice_name": "device_browser",
+        "slice_value": "mobile|chrome",
+        "numerator": 17758,
+        "denominator": 19859,
+        "metric_value": 0.8942041392,
+        "unit": "proportion",
+        "population": "applications with bank_connection_started"
+      },
+      {
+        "metric_name": "bank_connection_completion_rate",
+        "stage_name": null,
+        "slice_name": "device_browser",
+        "slice_value": "mobile|safari",
+        "numerator": 9816,
+        "denominator": 18372,
+        "metric_value": 0.5342913129,
+        "unit": "proportion",
+        "population": "applications with bank_connection_started"
+      }
+    ],
+    "bankExperiment": {
+      "experiment_name": "bank_connection_clarity",
+      "metric_name": "bank_connection_completion_rate",
+      "metric_role": "primary",
+      "population": "applications with bank_connection_started",
+      "unit": "proportion",
+      "n_assigned_control": 49901,
+      "n_assigned_treatment": 50099,
+      "n_control": 35016,
+      "n_treatment": 35111,
+      "n_assigned_outside_population_control": 14885,
+      "n_assigned_outside_population_treatment": 14988,
+      "conversions_control": 25954,
+      "conversions_treatment": 30082,
+      "control_value": 0.741204021,
+      "treatment_value": 0.8567685341,
+      "absolute_difference": 0.1155645131,
+      "absolute_difference_pp": 11.5564513059,
+      "relative_uplift": 0.1559145792,
+      "interval_standard_error": 0.0029955263,
+      "ci_low": 0.1096933893,
+      "ci_high": 0.1214356368,
+      "ci_level": 0.95,
+      "z_statistic": 38.1871739359,
+      "p_value": 5.34935e-319,
+      "null_rejected_at_alpha": true,
+      "alpha": 0.05,
+      "test_method": "two_proportion_z",
+      "interval_method": "wald_95"
+    }
   },
   "energy": {
     "operators": [
@@ -639,11 +794,30 @@
         "name": "PLUSPETROL CUENCA NEUQUINA S.R.L.",
         "oil": 112558.07000000002
       }
-    ]
+    ],
+    "headline": {
+      "periodo": "2025-12-01",
+      "anio": "2025",
+      "mes": "12",
+      "prod_pet_m3": "2909815.325269685",
+      "tef_sum": "70455.38873466998",
+      "days_in_month": "31",
+      "well_month_row_count": "3052",
+      "rate_m3_dia": "93865.0104925705",
+      "rate_bbl_dia": "590393.1539223329",
+      "productivity_m3_dia": "41.30011029004246",
+      "productivity_bbl_dia": "259.7698785044969",
+      "rate_method": "calendar_days",
+      "is_simulation": "True",
+      "disclaimer": "simulaci\u00f3n a partir de datos mensuales oficiales",
+      "source_batched_at_max": "2026-09-10 20:50:24.350928+00:00",
+      "fecha_data_max": "2025-12-31 00:00:00+00:00"
+    }
   },
   "sources": {
     "work/ecommerce/public/data/dashboard.json": "e68f0a5e8f877fcada65abb13e3f0f2e1bfbf862ef36381f63f69f14e7931d9b",
     "work/lendflow/web/src/data/dashboard.json": "f7c45fea342311ea2550a9d98129ec297359614f73bbec7ba0bb0d89a7dee2f4",
-    "work/vaca/apps/spike/data/company_latest.csv": "07e50bc4bba072b68d49204765d963faaa3f35c94a6a9fed1eeafb94d7d91f47"
+    "work/vaca/apps/spike/data/company_latest.csv": "07e50bc4bba072b68d49204765d963faaa3f35c94a6a9fed1eeafb94d7d91f47",
+    "vaca/apps/spike/data/headline.csv": "72c8f093e279f927a9813bf37e84660eabe345a45cb20d616885e7fc26447806"
   }
 }
