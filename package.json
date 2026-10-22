@@ -9,7 +9,9 @@
     "dev": "next dev",
     "build": "NEXT_TELEMETRY_DISABLED=1 next build",
     "lint": "eslint",
-    "typecheck": "next typegen && tsc --noEmit"
+    "typecheck": "next typegen && tsc --noEmit",
+    "postbuild": "node scripts/harden-static-html.mjs",
+    "test:security-html": "node --test scripts/harden-static-html.test.mjs scripts/eslint-glob.test.mjs"
   },
   "dependencies": {
     "@fontsource/ibm-plex-sans": "^5.3.0",
@@ -28,9 +30,14 @@
     "eslint-config-next": "16.4.2",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.18",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "fast-glob": "file:vendor/next-eslint-glob",
+    "parse5": "8.0.1"
   },
   "overrides": {
-    "source-map-js": "1.2.2"
+    "source-map-js": "1.2.2",
+    "@next/eslint-plugin-next": {
+      "fast-glob": "$fast-glob"
+    }
   }
 }
