@@ -50,3 +50,7 @@ Synthetic-data and development limitations are explicit. No LLM providers are cl
 The technical base came from the previous MIT-licensed adaptation of the [Magic UI portfolio](https://github.com/magicuidesign/portfolio) by Dillion Verma. Original copyright is preserved in `LICENSE`. The visual design and page composition were replaced. Joachim Hodana's site was a visual reference only; no code, copy or assets were copied.
 
 Brand assets and font licenses are documented in `docs/assets.md`.
+
+## Security maintenance
+
+Weekly GitHub-hosted dependency, secret and CodeQL checks; reviewed dependency updates without automatic merge. See [cadence, exceptions and monthly review](docs/security-maintenance.md).
